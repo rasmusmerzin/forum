@@ -13,6 +13,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import dev.merzin.forum.account.AccountService;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {

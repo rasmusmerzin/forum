@@ -1,4 +1,4 @@
-package dev.merzin.forum;
+package dev.merzin.forum.account;
 
 import java.util.Optional;
 import java.util.UUID;
