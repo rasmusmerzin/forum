@@ -20,4 +20,9 @@ public class AccountService implements UserDetailsService {
 	public void register(AccountRegistration registration) {
 		accountRepository.save(new Account(registration));
 	}
+
+	public AccountProfile getAccountProfileByUsername(String username) {
+		return new AccountProfile(accountRepository.findByUsername(username)
+			.orElseThrow(() -> new UsernameNotFoundException("User not found")));
+	}
 }

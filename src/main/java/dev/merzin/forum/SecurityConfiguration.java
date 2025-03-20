@@ -27,6 +27,7 @@ public class SecurityConfiguration {
 			.csrf(customizer -> customizer.disable())
 			.authorizeHttpRequests(customizer -> {
 				customizer.requestMatchers(HttpMethod.POST, "/account").permitAll();
+				customizer.requestMatchers(HttpMethod.GET, "/account/*").permitAll();
 				customizer.anyRequest().authenticated();
 			})
 			.httpBasic(Customizer.withDefaults())
