@@ -32,6 +32,7 @@ public class SecurityConfiguration {
 			.csrf(customizer -> customizer.disable())
 			.authorizeHttpRequests(request -> {
 				request.requestMatchers("/account/*").permitAll();
+				request.requestMatchers("/post/list/new").permitAll();
 				request.anyRequest().authenticated();
 			})
 			.httpBasic(Customizer.withDefaults())

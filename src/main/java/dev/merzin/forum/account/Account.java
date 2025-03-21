@@ -1,5 +1,6 @@
 package dev.merzin.forum.account;
 
+import java.time.ZonedDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -20,6 +21,7 @@ public class Account implements UserDetails {
 	private UUID id;
 	private String username;
 	private String password;
+	private ZonedDateTime created;
 
 	Account() {}
 
@@ -27,6 +29,7 @@ public class Account implements UserDetails {
 		this.id = UUID.randomUUID();
 		this.username = registration.username();
 		this.password = passwordEncoder().encode(registration.password());
+		this.created = ZonedDateTime.now();
 	}
 
 	@Bean
