@@ -2,9 +2,9 @@ package dev.merzin.forum.account;
 
 import java.util.UUID;
 
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 public class AccountProfile {
 	private UUID id;
 	private String username;

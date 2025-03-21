@@ -11,10 +11,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import lombok.Data;
+import lombok.Getter;
 
 @Entity
-@Data
+@Getter
 public class Account implements UserDetails {
 	@Id
 	private UUID id;
@@ -25,7 +25,6 @@ public class Account implements UserDetails {
 
 	Account(AccountRegistration registration) {
 		this.id = UUID.randomUUID();
-		System.out.println("Account: " + registration.username() + " " + registration.password());
 		this.username = registration.username();
 		this.password = passwordEncoder().encode(registration.password());
 	}
@@ -38,15 +37,5 @@ public class Account implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return List.of();
-	}
-
-	@Override
-	public String getUsername() {
-		return username;
-	}
-
-	@Override
-	public String getPassword() {
-		return password;
 	}
 }
