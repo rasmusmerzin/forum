@@ -25,4 +25,9 @@ public class PostService {
 		if (before == null) before = ZonedDateTime.now();
 		return postRepository.findTop10ByCreatedBeforeOrderByCreatedDesc(before);
 	}
+
+	public List<Post> getMyPosts(String username, ZonedDateTime before) {
+		if (before == null) before = ZonedDateTime.now();
+		return postRepository.findTop10ByAuthorUsernameAndCreatedBeforeOrderByCreatedDesc(username, before);
+	}
 }

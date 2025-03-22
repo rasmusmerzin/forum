@@ -29,4 +29,10 @@ public class PostController {
 	public List<PostResponse> getNewPosts(@RequestParam(required = false) ZonedDateTime before) {
 		return postService.getNewPosts(before).stream().map(PostResponse::new).toList();
 	}
+
+	@GetMapping("/list/my")
+	public List<PostResponse> getMyPosts(@RequestParam(required = false) ZonedDateTime before) {
+		var authentication = SecurityContextHolder.getContext().getAuthentication();
+		return postService.getMyPosts(authentication.getName(), before).stream().map(PostResponse::new).toList();
+	}
 }
