@@ -19,13 +19,14 @@ public class PostController {
 	private PostService postService;
 
 	@PostMapping
-	public Post createPost(@RequestBody PostCreation postCreation) {
+	public PostResponse createPost(@RequestBody PostCreation postCreation) {
 		var authentication = SecurityContextHolder.getContext().getAuthentication();
-		return postService.createPost(postCreation, authentication.getName());
+		var post = postService.createPost(postCreation, authentication.getName());
+		return new PostResponse(post);
 	}
 
 	@GetMapping("/list/new")
-	public List<Post> getNewPosts(@RequestParam(required = false) ZonedDateTime before) {
-		return postService.getNewPosts(before);
+	public List<PostResponse> getNewPosts(@RequestParam(required = false) ZonedDateTime before) {
+		return postService.getNewPosts(before).stream().map(PostResponse::new).toList();
 	}
 }

@@ -23,9 +23,9 @@ public class Account implements UserDetails {
 	private String password;
 	private ZonedDateTime created;
 
-	Account() {}
+	public Account() {}
 
-	Account(AccountRegistration registration) {
+	public Account(AccountRegistration registration) {
 		this.id = UUID.randomUUID();
 		this.username = registration.username();
 		this.password = passwordEncoder().encode(registration.password());

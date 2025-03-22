@@ -3,8 +3,10 @@ package dev.merzin.forum.post;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
+import dev.merzin.forum.account.Account;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 
 @Entity
@@ -12,15 +14,16 @@ import lombok.Getter;
 public class Post {
 	@Id
 	private UUID id;
-	private UUID authorId;
+	@OneToOne
+	private Account author;
 	private String content;
 	private ZonedDateTime created;
 
-	Post() {}
+	public Post() {}
 
-	Post(PostCreation postCreation, UUID authorId) {
+	public Post(PostCreation postCreation, Account author) {
 		this.id = UUID.randomUUID();
-		this.authorId = authorId;
+		this.author = author;
 		this.content = postCreation.content();
 		this.created = ZonedDateTime.now();
 	}

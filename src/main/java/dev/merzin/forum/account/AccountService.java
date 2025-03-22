@@ -31,9 +31,9 @@ public class AccountService implements UserDetailsService {
 		accountRepository.save(new Account(registration));
 	}
 
-	public AccountProfile getAccountProfileByUsername(String username) {
-		return new AccountProfile(accountRepository.findByUsername(username)
-			.orElseThrow(() -> new UsernameNotFoundException("User not found")));
+	public Account getAccountByUsername(String username) {
+		return accountRepository.findByUsername(username)
+			.orElseThrow(() -> new UsernameNotFoundException("User not found"));
 	}
 
 	public String verifyCredentials(AccountAuthentication a) {

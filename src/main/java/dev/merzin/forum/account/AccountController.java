@@ -16,9 +16,10 @@ public class AccountController {
 	private AccountService accountService;
 
 	@GetMapping
-	public AccountProfile getAccountProfile() {
+	public AccountResponse getAccount() {
 		var authentication = SecurityContextHolder.getContext().getAuthentication();
-		return accountService.getAccountProfileByUsername(authentication.getName());
+		var account = accountService.getAccountByUsername(authentication.getName());
+		return new AccountResponse(account);
 	}
 
 	@PostMapping("register")
@@ -32,7 +33,7 @@ public class AccountController {
 	}
 
 	@GetMapping("{username}")
-	public AccountProfile getAccountProfile(@PathVariable String username) {
-		return accountService.getAccountProfileByUsername(username);
+	public AccountResponse getAccount(@PathVariable String username) {
+		return new AccountResponse(accountService.getAccountByUsername(username));
 	}
 }

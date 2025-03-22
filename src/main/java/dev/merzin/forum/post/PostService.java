@@ -16,8 +16,8 @@ public class PostService {
 	private AccountService accountService;
 
 	public Post createPost(PostCreation postCreation, String username) {
-		var profile = accountService.getAccountProfileByUsername(username);
-		var post = new Post(postCreation, profile.getId());
+		var account = accountService.getAccountByUsername(username);
+		var post = new Post(postCreation, account);
 		return postRepository.save(post);
 	}
 
