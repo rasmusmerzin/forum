@@ -33,6 +33,7 @@ public class SecurityConfiguration {
 			.authorizeHttpRequests(request -> {
 				request.requestMatchers("/account/*").permitAll();
 				request.requestMatchers("/post/list/new").permitAll();
+				request.requestMatchers("/post/*").permitAll();
 				request.anyRequest().authenticated();
 			})
 			.httpBasic(Customizer.withDefaults())

@@ -2,6 +2,7 @@ package dev.merzin.forum.post;
 
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,10 @@ public class PostService {
 		var account = accountService.getAccountByUsername(username);
 		var post = new Post(postCreation, account);
 		return postRepository.save(post);
+	}
+
+	public Post getPost(UUID id) {
+		return postRepository.findById(id).orElse(null);
 	}
 
 	public List<Post> getNewPosts(ZonedDateTime before) {

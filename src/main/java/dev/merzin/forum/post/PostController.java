@@ -2,10 +2,12 @@ package dev.merzin.forum.post;
 
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,11 @@ public class PostController {
 		var authentication = SecurityContextHolder.getContext().getAuthentication();
 		var post = postService.createPost(postCreation, authentication.getName());
 		return new PostResponse(post);
+	}
+
+	@GetMapping("/{id}")
+	public PostResponse getPost(@PathVariable UUID id) {
+		return new PostResponse(postService.getPost(id));
 	}
 
 	@GetMapping("/list/new")

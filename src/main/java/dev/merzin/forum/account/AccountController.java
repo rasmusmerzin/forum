@@ -22,17 +22,17 @@ public class AccountController {
 		return new AccountResponse(account);
 	}
 
-	@PostMapping("register")
+	@PostMapping("/register")
 	public void register(@RequestBody AccountRegistration registration) {
 		accountService.register(registration);
 	}
 
-	@PostMapping("login")
+	@PostMapping("/login")
 	public String login(@RequestBody AccountAuthentication authentication) {
 		return accountService.verifyCredentials(authentication);
 	}
 
-	@GetMapping("{username}")
+	@GetMapping("/{username}")
 	public AccountResponse getAccount(@PathVariable String username) {
 		return new AccountResponse(accountService.getAccountByUsername(username));
 	}
