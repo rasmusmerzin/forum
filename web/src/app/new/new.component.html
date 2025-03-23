@@ -1,2 +1,7 @@
 <app-new-header />
-<p>new works!</p>
+
+<textarea
+  #textarea
+  placeholder="What's on your mind?"
+  (input)="resizeTextarea()"
+></textarea>

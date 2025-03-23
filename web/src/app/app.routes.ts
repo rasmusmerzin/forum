@@ -6,6 +6,11 @@ import { MeComponent } from "./me/me.component";
 export const routes: Routes = [
   {
     path: "",
+    redirectTo: "/home",
+    pathMatch: "full",
+  },
+  {
+    path: "home",
     component: HomeComponent,
   },
   {

@@ -1,0 +1,15 @@
+:host {
+  textarea {
+    border: none;
+    font-family: inherit;
+    width: 100%;
+    font-size: 18px;
+    line-height: 1;
+    padding: 12px;
+    outline: none;
+    border-bottom: 1px solid #888;
+    &::placeholder {
+      color: #888;
+    }
+  }
+}
