@@ -1,8 +1,6 @@
 package dev.merzin.forum.account;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,17 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/account")
-@CrossOrigin(origins = "*")
 public class AccountController {
 	@Autowired
 	private AccountService accountService;
-
-	@GetMapping
-	public AccountResponse getAccount() {
-		var authentication = SecurityContextHolder.getContext().getAuthentication();
-		var account = accountService.getAccountByUsername(authentication.getName());
-		return new AccountResponse(account);
-	}
 
 	@PostMapping("/register")
 	public void register(@RequestBody AccountRegistration registration) {

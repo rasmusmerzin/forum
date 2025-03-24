@@ -11,7 +11,8 @@
   />
 </svg>
 <h2 class="title">Sign up with username</h2>
-<p>Start posting, voting, and commenting in your favorite community.</p>
+<p>Start posting, hearting, and commenting in your favorite community.</p>
+<div class="error">{{ error }}</div>
 <div class="input">
   <svg width="20px" height="20px" viewBox="0 -960 960 960">
     <path
@@ -51,7 +52,13 @@
     [(ngModel)]="password2"
   />
 </div>
-<button class="main" (click)="register()">Sign up</button>
+<button class="main" (click)="register()">
+  @if (loading) {
+    <app-spinner color="#fff" [size]="16" />
+  } @else {
+    Sign up
+  }
+</button>
 <div class="divider"><span>Or sign up with</span></div>
 <div class="openid">
   <button (click)="unimplemented()">

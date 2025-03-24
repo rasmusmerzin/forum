@@ -23,15 +23,20 @@
       display: flex;
       grid-gap: 8px;
       button {
-        padding: 8px 16px;
+        padding: 0 16px;
+        height: 32px;
         font-size: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        white-space: nowrap;
         line-height: 1;
         border-radius: 16px;
         overflow: hidden;
         transition:
           background 200ms,
           color 200ms,
-          filter 100ms;
+          filter 200ms;
         &.preview {
           position: relative;
           color: var(--foreground);
@@ -56,8 +61,8 @@
         &.post {
           color: #fff;
           background: var(--primary);
-          &:active {
-            filter: brightness(1.5);
+          &:hover {
+            filter: brightness(1.25);
           }
         }
       }

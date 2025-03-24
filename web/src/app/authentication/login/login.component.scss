@@ -1,4 +1,4 @@
-@import "../../../styles";
+@import "../../../components";
 
 :host {
   width: 400px;
@@ -48,6 +48,11 @@
     margin: 0 0 16px;
     text-align: center;
   }
+  .error {
+    margin: 8px 0 0;
+    font-size: 14px;
+    color: var(--error);
+  }
   .input {
     position: relative;
     margin: 12px 0 0;
@@ -64,11 +69,6 @@
       width: 100%;
       padding: 8px 8px 8px 32px;
     }
-  }
-  .error {
-    margin: 8px 0 0;
-    font-size: 14px;
-    color: var(--error);
   }
   .memory {
     width: 100%;

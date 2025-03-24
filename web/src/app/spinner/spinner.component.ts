@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, HostBinding, Input } from "@angular/core";
 
 @Component({
   selector: "app-spinner",
@@ -11,4 +11,10 @@ export class SpinnerComponent {
   size = 24;
   @Input()
   color = "var(--foreground)";
+  @Input()
+  @HostBinding("class.fill")
+  fill = false;
+  @Input()
+  @HostBinding("style.background")
+  background = "none";
 }

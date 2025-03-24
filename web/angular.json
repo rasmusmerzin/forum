@@ -29,7 +29,11 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss",
+              "src/components.scss",
+              "src/checkbox.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -84,7 +88,11 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss",
+              "src/components.scss",
+              "src/checkbox.scss"
+            ],
             "scripts": []
           }
         }

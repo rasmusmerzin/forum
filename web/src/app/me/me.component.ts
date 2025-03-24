@@ -13,7 +13,7 @@ export class MeComponent implements AfterContentInit, OnDestroy {
   authenticationService = inject(AuthenticationService);
 
   ngAfterContentInit(): void {
-    this.authenticationService.checkLogin();
+    setTimeout(() => this.authenticationService.checkLogin());
   }
 
   ngOnDestroy(): void {

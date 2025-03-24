@@ -7,10 +7,11 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { AccountService } from "../../account/account.service";
+import { SpinnerComponent } from "../../spinner/spinner.component";
 
 @Component({
   selector: "app-register",
-  imports: [FormsModule],
+  imports: [FormsModule, SpinnerComponent],
   templateUrl: "./register.component.html",
   styleUrl: "./register.component.scss",
 })
@@ -40,7 +41,7 @@ export class RegisterComponent {
     try {
       this.loading = true;
       await this.accountService.register(this.username, this.password);
-      // create toast
+      // TODO: toast
       this.loginClickEvent.emit();
     } catch (error: any) {
       this.error = error.message || "Unknown error";

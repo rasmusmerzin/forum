@@ -21,6 +21,11 @@ public class Account implements UserDetails {
 	private UUID id;
 	private String username;
 	private String password;
+	private String firstName = "";
+	private String lastName = "";
+	private String bio = "";
+	private String email = "";
+	private boolean emailVerified = false;
 	private ZonedDateTime created;
 
 	public Account() {}

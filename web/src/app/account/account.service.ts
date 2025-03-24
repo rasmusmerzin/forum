@@ -25,12 +25,16 @@ export class AccountService {
       throw new Error((await response.text()) || "Registration failed");
   }
 
-  async login(username: string, password: string): Promise<string> {
+  async login(
+    username: string,
+    password: string,
+    rememberMe = false,
+  ): Promise<string> {
     const url = new URL("login", this.url);
     const response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ username, password, rememberMe }),
     });
     if (!response.ok)
       throw new Error((await response.text()) || "Login failed");
@@ -41,7 +45,7 @@ export class AccountService {
   }
 
   async fetchAccount(username = ""): Promise<Account> {
-    const url = new URL(`${username}`, this.url);
+    const url = new URL(username || "/account", this.url);
     const response = await fetch(url, { headers: this.headers() });
     if (!response.ok) throw new Error(await response.text());
     return response.json();

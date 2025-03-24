@@ -1,4 +1,5 @@
 :host {
+  z-index: 100;
   display: block;
   position: fixed;
   top: 0;
@@ -9,20 +10,19 @@
   backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 64px;
   animation: fade-in 300ms backwards;
-  @media (min-width: 640px) {
-    &::before {
-      content: "";
-      position: fixed;
-      top: -32px;
-      left: -32px;
-      right: -32px;
-      bottom: -32px;
-      background-size: cover;
-      background: url("/auth-wall.webp");
-      filter: blur(16px);
-    }
+  &::before {
+    content: "";
+    position: fixed;
+    top: -32px;
+    left: -32px;
+    right: -32px;
+    bottom: -32px;
+    background-size: cover;
+    background: url("/auth-wall.webp");
+    filter: blur(16px);
   }
   &.removed {
     animation: fade-out 300ms forwards;

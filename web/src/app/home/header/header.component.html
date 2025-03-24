@@ -1,11 +1,13 @@
 <div class="title">Forum</div>
 <div class="nav">
-  <button
-    (click)="onViewClick('following')"
-    [class.active]="selectedView === 'following'"
-  >
-    Following
-  </button>
+  @if (loggedIn) {
+    <button
+      (click)="onViewClick('following')"
+      [class.active]="selectedView === 'following'"
+    >
+      Following
+    </button>
+  }
   <button
     (click)="onViewClick('popular')"
     [class.active]="selectedView === 'popular'"

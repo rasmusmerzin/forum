@@ -39,6 +39,6 @@ public class AccountService implements UserDetailsService {
 	public String verifyCredentials(AccountAuthentication a) {
 		var token = new UsernamePasswordAuthenticationToken(a.username(), a.password());
 		authenticationManager.authenticate(token);
-		return jwtService.generateToken(a.username());
+		return jwtService.generateToken(a.username(), a.rememberMe());
 	}
 }

@@ -25,6 +25,7 @@ export class LoginComponent {
 
   username = "";
   password = "";
+  rememberMe = false;
   loading = false;
   error = "";
 
@@ -41,7 +42,12 @@ export class LoginComponent {
     if (!this.validate()) return;
     try {
       this.loading = true;
-      await this.accountService.login(this.username, this.password);
+      await this.accountService.login(
+        this.username,
+        this.password,
+        this.rememberMe,
+      );
+      location.reload();
     } catch (error: any) {
       this.error = error.message || "Unknown error";
     } finally {

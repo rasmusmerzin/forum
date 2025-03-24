@@ -17,12 +17,15 @@ import io.jsonwebtoken.security.Keys;
 public class JwtService {
 	@Value("${jwt.secret}")
 	private String secret;
+	private long DAY_MS = 1000 * 60 * 60 * 24;
+	private long MONTH_MS = DAY_MS * 30;
 
-	public String generateToken(String username) {
+	public String generateToken(String username, boolean rememberMe) {
+		var exp = new Date(System.currentTimeMillis() + (rememberMe ? MONTH_MS : DAY_MS));
 		return Jwts.builder()
 			.subject(username)
-			.issuedAt(new Date())
-			.expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
+			.issuedAt(new Date(System.currentTimeMillis()))
+			.expiration(exp)
 			.signWith(getKey())
 			.compact();
 	}
