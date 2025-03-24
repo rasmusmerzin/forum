@@ -1,0 +1,11 @@
+<div (click)="$event.stopPropagation()">
+  <svg width="48px" height="48px" viewBox="0 -960 960 960">
+    <path
+      d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h299v60H180v600h299v60H180Zm486-185-43-43 102-102H360v-60h363L621-612l43-43 176 176-174 174Z"
+    />
+  </svg>
+  <h2>Logout</h2>
+  <p>Are you sure you want to logout? You can log back in any time.</p>
+  <button class="logout button-basic" (click)="logout()">Logout</button>
+  <button class="cancel button-basic" (click)="cancel()">Cancel</button>
+</div>
