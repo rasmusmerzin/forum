@@ -1,3 +1,6 @@
+@import "components";
+@import "checkbox";
+
 :root {
   --background: #fff;
   --foreground: #000;
@@ -7,6 +10,7 @@
 
 * {
   -webkit-tap-highlight-color: transparent;
+  outline-color: var(--primary);
   box-sizing: border-box;
 }
 

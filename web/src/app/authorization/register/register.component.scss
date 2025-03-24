@@ -1,0 +1,129 @@
+@import "../../../styles";
+
+:host {
+  width: 400px;
+  max-width: calc(100% - 48px);
+  background: var(--background);
+  box-shadow: 0 0 24px #0004;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 24px;
+  position: relative;
+  overflow: hidden;
+  animation: form-appear 300ms backwards;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.2;
+    background: linear-gradient(
+      0deg,
+      var(--background),
+      var(--background),
+      var(--primary)
+    );
+  }
+  * {
+    z-index: 1;
+  }
+  .close {
+    @extend .button-icon;
+  }
+  > svg {
+    fill: var(--foreground);
+    background: var(--background);
+    padding: 12px;
+    border-radius: 16px;
+    box-shadow: 0 0 16px #8884;
+  }
+  .title {
+    margin: 16px 0;
+  }
+  p {
+    margin: 0 0 16px;
+    text-align: center;
+  }
+  .input {
+    position: relative;
+    margin: 12px 0 0;
+    svg {
+      position: absolute;
+      left: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      fill: #888;
+    }
+    width: 100%;
+    input {
+      @extend .input-basic;
+      width: 100%;
+      padding: 8px 8px 8px 32px;
+    }
+  }
+  button.main {
+    @extend .button-basic;
+    width: 100%;
+    margin: 32px 0 0;
+  }
+  .divider {
+    width: 100%;
+    margin: 24px 0 28px;
+    border-top: 1px solid #8884;
+    position: relative;
+    span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--background);
+      padding: 0 16px;
+      font-size: 14px;
+    }
+  }
+  .openid {
+    display: flex;
+    grid-gap: 8px;
+    width: 100%;
+    button {
+      @extend .button-hover-highlight;
+      flex: 1;
+      padding: 8px;
+      border: none;
+      background: var(--background);
+      fill: var(--foreground);
+      border-radius: 8px;
+      box-shadow: 0 0 8px #8884;
+    }
+  }
+  .login {
+    margin: 16px 0 0;
+    font-size: 14px;
+    button {
+      @extend .button-text;
+    }
+  }
+}
+.removed :host {
+  animation: form-disappear 300ms forwards;
+}
+
+@keyframes form-appear {
+  from {
+    transform: scale(0.8) translateY(64px);
+    opacity: 0;
+    border-radius: 16px;
+  }
+}
+
+@keyframes form-disappear {
+  to {
+    transform: scale(0.8) translateY(-64px);
+    opacity: 0;
+    border-radius: 16px;
+  }
+}

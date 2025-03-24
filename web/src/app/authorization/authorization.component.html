@@ -1,0 +1,5 @@
+@if (view === "login") {
+  <app-login (signUpClickEvent)="view = 'register'" />
+} @else if (view === "register") {
+  <app-register (loginClickEvent)="view = 'login'" />
+}
