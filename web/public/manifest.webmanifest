@@ -1,0 +1,12 @@
+{
+  "name": "Merzin Forum",
+  "short_name": "Forum",
+  "description": "Simple forum application",
+  "background_color": "#fff",
+  "theme_color": "#fff",
+  "scope": "/",
+  "start_url": "/",
+  "android_package_name": "dev.merzin.forum",
+  "display": "standalone",
+  "lang": "en"
+}
