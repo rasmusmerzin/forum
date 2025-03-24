@@ -1,9 +1,21 @@
 <div class="title">Forum</div>
 <div class="nav">
-  <button (click)="onViewClick('hot')" [class.active]="selectedView === 'hot'">
-    Hot
+  <button
+    (click)="onViewClick('following')"
+    [class.active]="selectedView === 'following'"
+  >
+    Following
   </button>
-  <button (click)="onViewClick('new')" [class.active]="selectedView === 'new'">
-    New
+  <button
+    (click)="onViewClick('popular')"
+    [class.active]="selectedView === 'popular'"
+  >
+    Popular
+  </button>
+  <button
+    (click)="onViewClick('latest')"
+    [class.active]="selectedView === 'latest'"
+  >
+    Latest
   </button>
 </div>

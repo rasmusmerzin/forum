@@ -10,7 +10,7 @@ import { HomeView, homeView } from "../home.state";
   styleUrl: "./header.component.scss",
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  selectedView: HomeView = "hot";
+  selectedView: HomeView = "popular";
   themeService = inject(ThemeService);
   themeSymbol?: symbol;
 

@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   themeService = inject(ThemeService);
   themeSymbol?: symbol;
+  preview = false;
 
   ngOnInit() {
     this.themeSymbol = this.themeService.registerBarColor("#ffffff");
@@ -35,5 +36,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onPostClick() {
     this.postClickEvent.emit();
+  }
+
+  onPreviewClick() {
+    this.preview = !this.preview;
   }
 }

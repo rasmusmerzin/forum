@@ -3,6 +3,9 @@
   background: var(--primary);
   color: #fff;
   box-shadow: 0 0 24px #0004;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   div {
     display: flex;
     justify-content: center;
@@ -10,9 +13,14 @@
     &.title {
       align-items: center;
       font-weight: 900;
-      font-size: 18px;
+      font-size: 20px;
+    }
+    &.nav {
+      width: 640px;
+      max-width: 100%;
     }
     button {
+      font-size: 16px;
       border: none;
       background: none;
       flex: 1;
@@ -23,7 +31,7 @@
       &.active {
         font-weight: bold;
         position: relative;
-        background: #fff2;
+        background: #fff4;
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
         border-bottom: 2px solid #fff;

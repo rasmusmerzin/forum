@@ -44,9 +44,13 @@ export class NewComponent implements AfterViewInit, OnDestroy {
     const { nativeElement } = this.textarea;
     nativeElement.style.height = "auto";
     const { scrollHeight } = nativeElement;
+    const minHeight = 18 * 6;
     const maxHeight =
       innerHeight - 48 - virtualKeyboard?.boundingRect.height || 0;
-    const newHeight = Math.min(scrollHeight, maxHeight);
+    const newHeight = Math.max(
+      minHeight,
+      Math.min(scrollHeight + 4, maxHeight),
+    );
     nativeElement.style.height = newHeight + "px";
   };
 }

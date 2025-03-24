@@ -2,7 +2,12 @@
   --background: #fff;
   --foreground: #000;
   --primary: #08f;
-  font-family: Helvetica, sans-serif;
+  font-family: "Open Sans", Helvetica, sans-serif;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
 }
 
 body {
@@ -11,6 +16,6 @@ body {
   color: var(--foreground);
 }
 
-* {
-  box-sizing: border-box;
+button:not(:disabled) {
+  cursor: pointer;
 }
