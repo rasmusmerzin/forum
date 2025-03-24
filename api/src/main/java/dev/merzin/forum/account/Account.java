@@ -37,6 +37,16 @@ public class Account implements UserDetails {
 		this.created = ZonedDateTime.now();
 	}
 
+	public void update(AccountUpdate update) {
+		if (update.firstName() != null) firstName = update.firstName();
+		if (update.lastName() != null) lastName = update.lastName();
+		if (update.bio() != null) bio = update.bio();
+		if (update.email() != null && update.email() != email) {
+			email = update.email();
+			emailVerified = false;
+		}
+	}
+
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder(12);

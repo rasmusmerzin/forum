@@ -1,12 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  inject,
-  OnDestroy,
-  OnInit,
-  Output,
-} from "@angular/core";
-import { ThemeService } from "../../theme/theme.service";
+import { Component, EventEmitter, Output } from "@angular/core";
 
 @Component({
   selector: "app-new-header",
@@ -14,21 +6,11 @@ import { ThemeService } from "../../theme/theme.service";
   templateUrl: "./header.component.html",
   styleUrl: "./header.component.scss",
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent {
   @Output()
   postClickEvent = new EventEmitter();
 
-  themeService = inject(ThemeService);
-  themeSymbol?: symbol;
   preview = false;
-
-  ngOnInit() {
-    this.themeSymbol = this.themeService.registerBarColor("#ffffff");
-  }
-
-  ngOnDestroy() {
-    this.themeService.unregisterBarColor(this.themeSymbol!);
-  }
 
   onBackClick() {
     history.back();

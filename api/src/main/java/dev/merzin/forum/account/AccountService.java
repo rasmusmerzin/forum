@@ -27,6 +27,13 @@ public class AccountService implements UserDetailsService {
 			.orElseThrow(() -> new UsernameNotFoundException("User not found"));
 	}
 
+	public void update(AccountUpdate update, String username) {
+		var account = accountRepository.findByUsername(username)
+			.orElseThrow(() -> new UsernameNotFoundException("User not found"));
+		account.update(update);
+		accountRepository.save(account);
+	}
+
 	public void register(AccountRegistration registration) {
 		accountRepository.save(new Account(registration));
 	}

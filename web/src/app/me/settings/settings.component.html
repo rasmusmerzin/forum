@@ -1,0 +1,57 @@
+<app-settings-header (saveClickEvent)="save()" [saveLoading]="saveLoading" />
+<main>
+  <div>
+    <label>Username</label>
+    <input
+      spellcheck="false"
+      name="username"
+      class="input-basic"
+      type="text"
+      disabled
+      value="@{{ username }}"
+    />
+  </div>
+  <div>
+    <label>First Name</label>
+    <input
+      spellcheck="false"
+      name="firstName"
+      class="input-basic"
+      type="text"
+      [(ngModel)]="firstName"
+    />
+  </div>
+  <div>
+    <label>Last Name</label>
+    <input
+      spellcheck="false"
+      name="lastName"
+      class="input-basic"
+      type="text"
+      [(ngModel)]="lastName"
+    />
+  </div>
+  <div>
+    <label>Bio</label>
+    <textarea
+      spellcheck="false"
+      rows="8"
+      name="bio"
+      class="input-basic"
+      [(ngModel)]="bio"
+    ></textarea>
+  </div>
+  <div>
+    <label>Email</label>
+    <input
+      spellcheck="false"
+      name="email"
+      class="input-basic"
+      type="email"
+      [(ngModel)]="email"
+    />
+  </div>
+  @if (loading) {
+    <app-spinner [size]="32" [fill]="true" background="var(--background)" />
+  }
+</main>

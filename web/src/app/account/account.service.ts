@@ -1,6 +1,6 @@
 import { Injectable, signal } from "@angular/core";
 import { API_URL } from "../app.properties";
-import { Account } from "./account";
+import { Account, AccountUpdate } from "./account";
 
 @Injectable({
   providedIn: "root",
@@ -12,6 +12,16 @@ export class AccountService {
   constructor() {
     const jwt = localStorage.getItem("jwt");
     if (jwt) this.jwt.set(jwt);
+  }
+
+  async update(update: AccountUpdate): Promise<void> {
+    const response = await fetch(this.url, {
+      method: "PATCH",
+      headers: this.headers({ "Content-Type": "application/json" }),
+      body: JSON.stringify(update),
+    });
+    if (!response.ok)
+      throw new Error((await response.text()) || "Update failed");
   }
 
   async register(username: string, password: string): Promise<void> {

@@ -24,14 +24,17 @@ export class NewComponent implements AfterViewInit, OnDestroy {
   textarea?: ElementRef<HTMLTextAreaElement | null>;
 
   ngAfterViewInit(): void {
-    setTimeout(() => this.authenticationService.checkLogin());
     this.textarea?.nativeElement?.focus();
     this.resizeTextarea();
     addEventListener("resize", this.resizeTextarea);
-    if (virtualKeyboard) {
-      virtualKeyboard.overlaysContent = true;
-      virtualKeyboard.addEventListener("geometrychange", this.resizeTextarea);
-    }
+    setTimeout(() => {
+      this.authenticationService.checkLogin();
+      if (!this.authenticationService.getUsername()) return;
+      if (virtualKeyboard) {
+        virtualKeyboard.overlaysContent = true;
+        virtualKeyboard.addEventListener("geometrychange", this.resizeTextarea);
+      }
+    });
   }
 
   ngOnDestroy(): void {

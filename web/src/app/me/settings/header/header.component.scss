@@ -32,33 +32,10 @@
         white-space: nowrap;
         line-height: 1;
         border-radius: 16px;
+        transition: filter 200ms;
         overflow: hidden;
-        transition:
-          background 200ms,
-          color 200ms,
-          filter 200ms;
-        &.preview {
-          position: relative;
-          color: var(--foreground);
-          &::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--foreground);
-            opacity: 0.2;
-          }
-          &.active {
-            color: var(--background);
-            background: var(--foreground);
-            &::before {
-              display: none;
-            }
-          }
-        }
-        &.post {
+        position: relative;
+        &.save {
           color: #fff;
           background: var(--primary);
           &:hover {

@@ -2,13 +2,13 @@ import { Component, inject, OnDestroy, OnInit } from "@angular/core";
 import { ThemeService } from "../../theme/theme.service";
 import { THEME_COLOR } from "../../app.properties";
 import { AccountService } from "../../account/account.service";
-import { Router } from "@angular/router";
+import { RouterLink } from "@angular/router";
 import { SpinnerComponent } from "../../spinner/spinner.component";
 import { AuthenticationService } from "../../authentication/authentication.service";
 
 @Component({
   selector: "app-me-header",
-  imports: [SpinnerComponent],
+  imports: [RouterLink, SpinnerComponent],
   templateUrl: "./header.component.html",
   styleUrl: "./header.component.scss",
 })
@@ -17,7 +17,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   fullname = "";
   bio = "";
 
-  router = inject(Router);
   authenticationService = inject(AuthenticationService);
   accountService = inject(AccountService);
   themeService = inject(ThemeService);
@@ -42,11 +41,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.themeService.unregisterBarColor(this.themeSymbol!);
-  }
-
-  logout() {
-    this.accountService.logout();
-    // TODO: toast
-    this.router.navigate(["/home"]);
   }
 }

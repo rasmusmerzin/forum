@@ -8,3 +8,10 @@ export interface Account {
   emailVerified: boolean;
   created: string;
 }
+
+export interface AccountUpdate {
+  firstName: string;
+  lastName: string;
+  bio: string;
+  email: string;
+}
