@@ -11,21 +11,7 @@ export const routes: Routes = [
   },
   {
     path: "home",
-    children: [
-      {
-        path: "",
-        redirectTo: "new",
-        pathMatch: "full",
-      },
-      {
-        path: "new",
-        component: HomeComponent,
-      },
-      {
-        path: "hot",
-        component: HomeComponent,
-      },
-    ],
+    component: HomeComponent,
   },
   {
     path: "new",

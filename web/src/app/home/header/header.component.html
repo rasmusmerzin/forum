@@ -1,5 +1,9 @@
 <div class="title">Forum</div>
 <div class="nav">
-  <a routerLink="/home/new" routerLinkActive="active">New</a>
-  <a routerLink="/home/hot" routerLinkActive="active">Hot</a>
+  <button (click)="onViewClick('hot')" [class.active]="selectedView === 'hot'">
+    Hot
+  </button>
+  <button (click)="onViewClick('new')" [class.active]="selectedView === 'new'">
+    New
+  </button>
 </div>

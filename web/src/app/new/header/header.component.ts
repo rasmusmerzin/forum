@@ -18,8 +18,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @Output()
   postClickEvent = new EventEmitter();
 
-  private themeService = inject(ThemeService);
-  private themeSymbol?: symbol;
+  themeService = inject(ThemeService);
+  themeSymbol?: symbol;
 
   ngOnInit() {
     this.themeSymbol = this.themeService.registerBarColor("#ffffff");
