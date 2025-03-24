@@ -1,5 +1,5 @@
 import {
-  AfterContentInit,
+  AfterViewInit,
   Component,
   ElementRef,
   inject,
@@ -17,13 +17,13 @@ const { virtualKeyboard } = navigator as any;
   templateUrl: "./new.component.html",
   styleUrl: "./new.component.scss",
 })
-export class NewComponent implements AfterContentInit, OnDestroy {
+export class NewComponent implements AfterViewInit, OnDestroy {
   authorizationService = inject(AuthorizationService);
 
   @ViewChild("textarea")
   textarea?: ElementRef<HTMLTextAreaElement | null>;
 
-  ngAfterContentInit(): void {
+  ngAfterViewInit(): void {
     setTimeout(() => this.authorizationService.checkLogin());
     this.textarea?.nativeElement?.focus();
     this.resizeTextarea();

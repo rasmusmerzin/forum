@@ -24,8 +24,11 @@
   color: #fff;
   background: var(--primary);
   transition: filter 200ms;
-  &:hover {
-    filter: brightness(1.25);
+  &:not(:disabled) {
+    cursor: pointer;
+    &:hover {
+      filter: brightness(1.25);
+    }
   }
 }
 

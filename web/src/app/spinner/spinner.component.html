@@ -1,0 +1,28 @@
+<svg [attr.height]="size" [attr.width]="size" viewBox="0 0 200 200">
+  <circle
+    cx="100"
+    cy="100"
+    r="90"
+    fill="none"
+    [attr.stroke]="color"
+    stroke-width="20"
+    stroke-dasharray="566"
+    stroke-dashoffset="200"
+    stroke-linecap="round"
+  >
+    <animateTransform
+      attributeName="transform"
+      type="rotate"
+      from="0 100 100"
+      to="360 100 100"
+      dur="1s"
+      repeatCount="indefinite"
+    />
+    <animate
+      attributeName="stroke-dashoffset"
+      values="200;500;200"
+      dur="2s"
+      repeatCount="indefinite"
+    />
+  </circle>
+</svg>

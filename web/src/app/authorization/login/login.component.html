@@ -12,6 +12,7 @@
 </svg>
 <h2 class="title">Sign in with username</h2>
 <p>Start posting, voting, and commenting in your favorite community.</p>
+<div class="error">{{ error }}</div>
 <div class="input">
   <svg width="20px" height="20px" viewBox="0 -960 960 960">
     <path
@@ -45,7 +46,13 @@
   </div>
   <button (click)="unimplemented()">Forgot password?</button>
 </div>
-<button class="main" (click)="unimplemented()">Sign in</button>
+<button class="main" (click)="login()" [disabled]="loading">
+  @if (loading) {
+    <app-spinner color="#fff" [size]="16" />
+  } @else {
+    Sign in
+  }
+</button>
 <div class="divider"><span>Or sign in with</span></div>
 <div class="openid">
   <button (click)="unimplemented()">

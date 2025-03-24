@@ -6,7 +6,7 @@ import { Account } from "./account";
   providedIn: "root",
 })
 export class AccountService {
-  url = new URL("/account", API_URL);
+  url = new URL("/account/", API_URL);
   jwt = signal<string>("");
 
   constructor() {
@@ -15,23 +15,25 @@ export class AccountService {
   }
 
   async register(username: string, password: string): Promise<void> {
-    const url = new URL("/register", this.url);
+    const url = new URL("register", this.url);
     const response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
     });
-    if (!response.ok) throw new Error(await response.text());
+    if (!response.ok)
+      throw new Error((await response.text()) || "Registration failed");
   }
 
   async login(username: string, password: string): Promise<string> {
-    const url = new URL("/login", this.url);
+    const url = new URL("login", this.url);
     const response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
     });
-    if (!response.ok) throw new Error(await response.text());
+    if (!response.ok)
+      throw new Error((await response.text()) || "Login failed");
     const jwt = await response.text();
     this.jwt.set(jwt);
     localStorage.setItem("jwt", jwt);
@@ -39,7 +41,7 @@ export class AccountService {
   }
 
   async fetchAccount(username = ""): Promise<Account> {
-    const url = new URL(`/${username}`, this.url);
+    const url = new URL(`${username}`, this.url);
     const response = await fetch(url, { headers: this.headers() });
     if (!response.ok) throw new Error(await response.text());
     return response.json();

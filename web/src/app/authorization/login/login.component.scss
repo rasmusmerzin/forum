@@ -65,6 +65,11 @@
       padding: 8px 8px 8px 32px;
     }
   }
+  .error {
+    margin: 8px 0 0;
+    font-size: 14px;
+    color: var(--error);
+  }
   .memory {
     width: 100%;
     display: flex;
