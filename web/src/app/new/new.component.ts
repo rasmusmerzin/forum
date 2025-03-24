@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from "@angular/core";
 import { HeaderComponent } from "./header/header.component";
-import { AuthorizationService } from "../authorization/authorization.service";
+import { AuthenticationService } from "../authentication/authentication.service";
 
 const { virtualKeyboard } = navigator as any;
 
@@ -18,13 +18,13 @@ const { virtualKeyboard } = navigator as any;
   styleUrl: "./new.component.scss",
 })
 export class NewComponent implements AfterViewInit, OnDestroy {
-  authorizationService = inject(AuthorizationService);
+  authenticationService = inject(AuthenticationService);
 
   @ViewChild("textarea")
   textarea?: ElementRef<HTMLTextAreaElement | null>;
 
   ngAfterViewInit(): void {
-    setTimeout(() => this.authorizationService.checkLogin());
+    setTimeout(() => this.authenticationService.checkLogin());
     this.textarea?.nativeElement?.focus();
     this.resizeTextarea();
     addEventListener("resize", this.resizeTextarea);
@@ -35,7 +35,7 @@ export class NewComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.authorizationService.hideLogin();
+    this.authenticationService.hideLogin();
     removeEventListener("resize", this.resizeTextarea);
     if (virtualKeyboard) {
       virtualKeyboard.overlaysContent = false;

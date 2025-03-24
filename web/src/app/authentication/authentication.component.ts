@@ -10,19 +10,19 @@ import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
 import { ThemeService } from "../theme/theme.service";
 
-export type AuthorizationView = "login" | "register" | "forgot";
+export type AuthenticationView = "login" | "register" | "forgot";
 
 @Component({
-  selector: "app-authorization",
+  selector: "app-authentication",
   imports: [LoginComponent, RegisterComponent],
-  templateUrl: "./authorization.component.html",
-  styleUrl: "./authorization.component.scss",
+  templateUrl: "./authentication.component.html",
+  styleUrl: "./authentication.component.scss",
 })
-export class AuthorizationComponent implements OnInit, OnDestroy {
+export class AuthenticationComponent implements OnInit, OnDestroy {
   @HostBinding("class.removed")
   removed = false;
   @HostBinding("class")
-  view: AuthorizationView = "login";
+  view: AuthenticationView = "login";
 
   themeService = inject(ThemeService);
   themeSymbol?: symbol;

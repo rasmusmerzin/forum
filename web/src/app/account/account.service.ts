@@ -55,7 +55,7 @@ export class AccountService {
   headers(init: Record<string, string> = {}): Record<string, string> {
     const jwt = this.jwt();
     const headers: Record<string, string> = { ...init };
-    if (jwt) headers["Authorization"] = `Bearer ${jwt}`;
+    if (jwt) headers["Authentication"] = `Bearer ${jwt}`;
     return headers;
   }
 }

@@ -4,7 +4,7 @@ import { AccountService } from "../account/account.service";
 @Injectable({
   providedIn: "root",
 })
-export class AuthorizationService {
+export class AuthenticationService {
   accountService = inject(AccountService);
   loggedInEvent = new EventEmitter<boolean | null>();
 

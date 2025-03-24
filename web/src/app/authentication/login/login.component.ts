@@ -8,7 +8,7 @@ import {
 import { FormsModule } from "@angular/forms";
 import { SpinnerComponent } from "../../spinner/spinner.component";
 import { AccountService } from "../../account/account.service";
-import { AuthorizationService } from "../authorization.service";
+import { AuthenticationService } from "../authentication.service";
 
 @Component({
   selector: "app-login",
@@ -21,7 +21,7 @@ export class LoginComponent {
   signUpClickEvent = new EventEmitter<void>();
 
   accountService = inject(AccountService);
-  authorizationService = inject(AuthorizationService);
+  authenticationService = inject(AuthenticationService);
 
   username = "";
   password = "";
@@ -46,7 +46,7 @@ export class LoginComponent {
       this.error = error.message || "Unknown error";
     } finally {
       this.loading = false;
-      this.authorizationService.checkLogin();
+      this.authenticationService.checkLogin();
     }
   }
 

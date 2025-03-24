@@ -1,23 +1,23 @@
 import { Component, inject, OnDestroy, OnInit } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { Subscription } from "rxjs";
-import { AuthorizationComponent } from "./authorization/authorization.component";
-import { AuthorizationService } from "./authorization/authorization.service";
+import { AuthenticationComponent } from "./authentication/authentication.component";
+import { AuthenticationService } from "./authentication/authentication.service";
 
 @Component({
   selector: "app-root",
-  imports: [RouterOutlet, AuthorizationComponent],
+  imports: [RouterOutlet, AuthenticationComponent],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss",
 })
 export class AppComponent implements OnInit, OnDestroy {
-  authorizationService = inject(AuthorizationService);
-  showAuthorization = false;
+  authenticationService = inject(AuthenticationService);
+  showAuthentication = false;
   subscription = new Subscription();
 
   ngOnInit() {
     this.subscription.add(
-      this.authorizationService.loggedInEvent.subscribe(
+      this.authenticationService.loggedInEvent.subscribe(
         this.onLoggedInEvent.bind(this),
       ),
     );
@@ -29,8 +29,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   onLoggedInEvent(loggedIn: boolean | null) {
     const showLogin = loggedIn === false;
-    if (this.showAuthorization && !showLogin)
-      setTimeout(() => (this.showAuthorization = false), 300);
-    else this.showAuthorization = showLogin;
+    if (this.showAuthentication && !showLogin)
+      setTimeout(() => (this.showAuthentication = false), 300);
+    else this.showAuthentication = showLogin;
   }
 }
