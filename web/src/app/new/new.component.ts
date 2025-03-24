@@ -17,10 +17,10 @@ const { virtualKeyboard } = navigator as any;
 })
 export class NewComponent implements AfterViewInit, OnDestroy {
   @ViewChild("textarea")
-  textarea: ElementRef<HTMLTextAreaElement> = null!;
+  textarea?: ElementRef<HTMLTextAreaElement | null>;
 
   ngAfterViewInit(): void {
-    this.textarea.nativeElement.focus();
+    this.textarea?.nativeElement?.focus();
     this.resizeTextarea();
     addEventListener("resize", this.resizeTextarea);
     if (virtualKeyboard) {
@@ -41,7 +41,8 @@ export class NewComponent implements AfterViewInit, OnDestroy {
   }
 
   resizeTextarea = async () => {
-    const { nativeElement } = this.textarea;
+    const { nativeElement } = this.textarea || {};
+    if (!nativeElement) return;
     nativeElement.style.height = "auto";
     const { scrollHeight } = nativeElement;
     const minHeight = 18 * 6;

@@ -27,6 +27,7 @@
         line-height: 1;
         border-radius: 16px;
         overflow: hidden;
+        transition: 200ms;
         &.preview {
           position: relative;
           color: var(--foreground);
@@ -51,6 +52,9 @@
         &.post {
           color: #fff;
           background: var(--primary);
+          &:active {
+            filter: brightness(1.5);
+          }
         }
       }
     }
