@@ -1,0 +1,32 @@
+:host {
+  display: block;
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 0 24px #0004;
+  div {
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    &.title {
+      align-items: center;
+      font-weight: 900;
+      font-size: 18px;
+    }
+    a {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: inherit;
+      text-decoration: none;
+      &.active {
+        font-weight: bold;
+        position: relative;
+        background: #fff2;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        border-bottom: 2px solid #fff;
+      }
+    }
+  }
+}

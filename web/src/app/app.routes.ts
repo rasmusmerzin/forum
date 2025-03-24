@@ -6,12 +6,26 @@ import { MeComponent } from "./me/me.component";
 export const routes: Routes = [
   {
     path: "",
-    redirectTo: "/home",
+    redirectTo: "home",
     pathMatch: "full",
   },
   {
     path: "home",
-    component: HomeComponent,
+    children: [
+      {
+        path: "",
+        redirectTo: "new",
+        pathMatch: "full",
+      },
+      {
+        path: "new",
+        component: HomeComponent,
+      },
+      {
+        path: "hot",
+        component: HomeComponent,
+      },
+    ],
   },
   {
     path: "new",
