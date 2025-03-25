@@ -37,7 +37,7 @@ export class NewComponent implements AfterViewInit, OnDestroy {
     try {
       this.loading = true;
       const { id } = await this.postService.createPost(this.content);
-      this.router.navigate([`/post/${id}`], { replaceUrl: true });
+      this.router.navigate(["/post", id], { replaceUrl: true });
     } catch (error: any) {
       console.error(error);
     } finally {

@@ -6,11 +6,14 @@
     background: var(--primary);
     height: 120px;
     width: 100%;
+    display: flex;
+    justify-content: center;
     .actions {
       display: flex;
       justify-content: flex-end;
       grid-gap: 8px;
       padding: 16px 28px;
+      width: 640px;
       svg {
         fill: #fff;
       }

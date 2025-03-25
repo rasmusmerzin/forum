@@ -1,5 +1,21 @@
 <app-me-header />
 
+@if (loading) {
+  <div class="loading">
+    <app-spinner />
+  </div>
+} @else {
+  @for (post of posts; track post.id) {
+    <app-post-card
+      [username]="post.author.username"
+      [content]="post.content"
+      (click)="onPostClick(post)"
+    />
+  } @empty {
+    <p>No posts yet.</p>
+  }
+}
+
 <app-navigation />
 
 <router-outlet />

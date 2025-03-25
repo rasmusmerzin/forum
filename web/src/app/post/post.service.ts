@@ -43,7 +43,7 @@ export class PostService {
     username: string,
     before?: string | Date,
   ): Promise<Post[]> {
-    let url = new URL(`user/${username}`, this.url).href;
+    let url = new URL(`list/user/${username}`, this.url).href;
     if (before) url += `?before=${new Date(before).toISOString()}`;
     const response = await fetch(url);
     if (!response.ok) throw new Error(await response.text());
