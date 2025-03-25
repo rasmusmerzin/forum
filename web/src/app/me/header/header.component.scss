@@ -22,10 +22,8 @@
     background: var(--background);
     padding: 16px;
     border-radius: 16px;
-    width: 640px;
+    width: 608px;
     max-width: calc(100% - 32px);
-    display: flex;
-    flex-direction: column;
     box-shadow: 0 0 24px #0004;
     position: relative;
     overflow: hidden;

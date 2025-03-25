@@ -1,0 +1,9 @@
+<app-post-header />
+
+@if (loading) {
+  <div class="loading">
+    <app-spinner />
+  </div>
+} @else if (post) {
+  <app-post-card [username]="post.author.username" [content]="post.content" />
+}

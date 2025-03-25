@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  justify-content: center;
+  > div {
+    width: 640px;
+    max-width: 100vw;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    height: 48px;
+    justify-content: space-between;
+    button {
+      font-weight: bold;
+      padding: 0;
+      border: none;
+      background: #0000;
+      > svg {
+        fill: var(--foreground);
+      }
+    }
+  }
+}

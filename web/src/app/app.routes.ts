@@ -4,6 +4,7 @@ import { NewComponent } from "./new/new.component";
 import { MeComponent } from "./me/me.component";
 import { EditComponent } from "./me/edit/edit.component";
 import { LogoutComponent } from "./me/logout/logout.component";
+import { PostComponent } from "./post/post.component";
 
 export const routes: Routes = [
   {
@@ -32,5 +33,9 @@ export const routes: Routes = [
   {
     path: "me/edit",
     component: EditComponent,
+  },
+  {
+    path: "post/:id",
+    component: PostComponent,
   },
 ];

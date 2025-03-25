@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  background: var(--background);
+  padding: 16px;
+  border-radius: 16px;
+  width: 608px;
+  max-width: calc(100% - 32px);
+  box-shadow: 0 0 24px #0004;
+  margin: 16px auto;
+  .username {
+    font-weight: bold;
+    font-size: 14px;
+  }
+}

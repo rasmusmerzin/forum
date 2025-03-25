@@ -9,6 +9,8 @@ import {
 import { HeaderComponent } from "./header/header.component";
 import { AuthenticationService } from "../authentication/authentication.service";
 import { FormsModule } from "@angular/forms";
+import { PostService } from "../post/post.service";
+import { Router } from "@angular/router";
 
 const { virtualKeyboard } = navigator as any;
 
@@ -20,12 +22,28 @@ const { virtualKeyboard } = navigator as any;
 })
 export class NewComponent implements AfterViewInit, OnDestroy {
   authenticationService = inject(AuthenticationService);
+  postService = inject(PostService);
+  router = inject(Router);
 
   @ViewChild("textarea")
   textarea?: ElementRef<HTMLElement | null>;
 
   content = "";
   preview = false;
+  loading = false;
+
+  async post() {
+    if (!this.content.trim()) return;
+    try {
+      this.loading = true;
+      const { id } = await this.postService.createPost(this.content);
+      this.router.navigate([`/post/${id}`], { replaceUrl: true });
+    } catch (error: any) {
+      console.error(error);
+    } finally {
+      this.loading = false;
+    }
+  }
 
   ngAfterViewInit(): void {
     this.resizeTextarea();

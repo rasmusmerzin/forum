@@ -1,4 +1,9 @@
-<app-new-header [(preview)]="preview" (previewClickEvent)="togglePreview()" />
+<app-new-header
+  [loading]="loading"
+  [(preview)]="preview"
+  (postClickEvent)="post()"
+  (previewClickEvent)="togglePreview()"
+/>
 
 <main>
   @if (preview) {
