@@ -1,6 +1,6 @@
 <app-new-header [(preview)]="preview" (previewClickEvent)="togglePreview()" />
 
-<main #main>
+<main>
   @if (preview) {
     <div>{{ content }}</div>
   } @else {

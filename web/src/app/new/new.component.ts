@@ -23,14 +23,12 @@ export class NewComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild("textarea")
   textarea?: ElementRef<HTMLElement | null>;
-  @ViewChild("main")
-  main?: ElementRef<HTMLElement | null>;
 
   content = "";
   preview = false;
 
   ngAfterViewInit(): void {
-    this.resize();
+    this.resizeTextarea();
     addEventListener("resize", this.resizeTextarea);
     setTimeout(() => {
       this.authenticationService.checkLogin();
@@ -38,7 +36,7 @@ export class NewComponent implements AfterViewInit, OnDestroy {
       this.textarea?.nativeElement?.focus();
       if (virtualKeyboard) {
         virtualKeyboard.overlaysContent = true;
-        virtualKeyboard.addEventListener("geometrychange", this.resize);
+        virtualKeyboard.addEventListener("geometrychange", this.resizeTextarea);
       }
     });
   }
@@ -48,25 +46,20 @@ export class NewComponent implements AfterViewInit, OnDestroy {
     removeEventListener("resize", this.resizeTextarea);
     if (virtualKeyboard) {
       virtualKeyboard.overlaysContent = false;
-      virtualKeyboard.removeEventListener("geometrychange", this.resize);
+      virtualKeyboard.removeEventListener(
+        "geometrychange",
+        this.resizeTextarea,
+      );
     }
   }
 
   togglePreview() {
     this.preview = !this.preview;
-    setTimeout(this.resizeTextarea);
-  }
-
-  resize = () => {
-    this.resizeMain();
-    this.resizeTextarea();
-  };
-
-  resizeMain() {
-    const { nativeElement } = this.main || {};
-    if (!nativeElement) return;
-    const height = innerHeight - 48 - virtualKeyboard?.boundingRect.height || 0;
-    nativeElement.style.height = height + "px";
+    if (!this.preview)
+      setTimeout(() => {
+        this.resizeTextarea();
+        this.textarea?.nativeElement?.focus();
+      });
   }
 
   resizeTextarea = () => {
