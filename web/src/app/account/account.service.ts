@@ -1,24 +1,22 @@
-import { Injectable, signal } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { API_URL } from "../app.properties";
 import { Account, AccountUpdate } from "./account";
+import { AuthenticationService } from "../authentication/authentication.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class AccountService {
   url = new URL("/account/", API_URL);
-  jwt = signal<string>("");
-
-  constructor() {
-    const jwt = localStorage.getItem("jwt");
-    if (jwt) this.jwt.set(jwt);
-  }
+  authenticationService = inject(AuthenticationService);
 
   async update(update: AccountUpdate): Promise<void> {
     const url = new URL("/account", this.url);
     const response = await fetch(url, {
       method: "PATCH",
-      headers: this.headers({ "Content-Type": "application/json" }),
+      headers: this.authenticationService.headers({
+        "Content-Type": "application/json",
+      }),
       body: JSON.stringify(update),
     });
     if (!response.ok)
@@ -50,27 +48,16 @@ export class AccountService {
     if (!response.ok)
       throw new Error((await response.text()) || "Login failed");
     const jwt = await response.text();
-    this.jwt.set(jwt);
-    localStorage.setItem("jwt", jwt);
+    this.authenticationService.setJwt(jwt, rememberMe);
     return jwt;
   }
 
   async fetchAccount(username = ""): Promise<Account> {
     const url = new URL(username || "/account", this.url);
-    const response = await fetch(url, { headers: this.headers() });
+    const response = await fetch(url, {
+      headers: this.authenticationService.headers(),
+    });
     if (!response.ok) throw new Error(await response.text());
     return response.json();
-  }
-
-  logout(): void {
-    this.jwt.set("");
-    localStorage.removeItem("jwt");
-  }
-
-  headers(init: Record<string, string> = {}): Record<string, string> {
-    const jwt = this.jwt();
-    const headers: Record<string, string> = { ...init };
-    if (jwt) headers["Authorization"] = `Bearer ${jwt}`;
-    return headers;
   }
 }

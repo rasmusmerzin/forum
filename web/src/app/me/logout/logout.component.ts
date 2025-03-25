@@ -7,8 +7,8 @@ import {
   OnInit,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { AccountService } from "../../account/account.service";
 import { ThemeService } from "../../theme/theme.service";
+import { AuthenticationService } from "../../authentication/authentication.service";
 
 @Component({
   selector: "app-logout",
@@ -17,7 +17,7 @@ import { ThemeService } from "../../theme/theme.service";
   styleUrl: "./logout.component.scss",
 })
 export class LogoutComponent implements OnInit, OnDestroy {
-  accountService = inject(AccountService);
+  authenticationService = inject(AuthenticationService);
   router = inject(Router);
 
   @HostBinding("class.removed")
@@ -44,8 +44,8 @@ export class LogoutComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    this.accountService.logout();
-    this.router.navigate(["/home"]);
+    this.authenticationService.logout();
+    this.router.navigate(["/home"], { replaceUrl: true });
   }
 
   onKeydown = (event: KeyboardEvent) => event.key === "Escape" && this.cancel();

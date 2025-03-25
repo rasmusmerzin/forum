@@ -30,7 +30,7 @@ export class AuthenticationComponent implements OnInit, OnDestroy {
   ngOnInit() {
     addEventListener("popstate", this.remove);
     addEventListener("keydown", this.onKeydown);
-    this.themeSymbol = this.themeService.registerBarColor("#ddd");
+    this.themeSymbol = this.themeService.registerBarColor("#e4eaed");
   }
 
   ngOnDestroy() {
