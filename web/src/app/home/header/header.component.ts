@@ -1,6 +1,5 @@
 import { Component, inject, OnDestroy, OnInit } from "@angular/core";
 import { ThemeService } from "../../theme/theme.service";
-import { THEME_COLOR } from "../../app.properties";
 import { HomeView, homeView } from "../home.state";
 import { AccountService } from "../../account/account.service";
 
@@ -18,7 +17,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   loggedIn = false;
 
   ngOnInit() {
-    this.themeSymbol = this.themeService.registerBarColor(THEME_COLOR);
+    this.themeSymbol = this.themeService.registerBarColor(
+      this.themeService.getPrimaryColor(),
+    );
     this.selectedView = homeView();
     this.loggedIn = !!this.accountService.jwt();
   }

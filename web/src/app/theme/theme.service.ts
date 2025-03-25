@@ -13,6 +13,11 @@ export class ThemeService {
     this.defaultBarColor = this.barColorMeta.content;
   }
 
+  getPrimaryColor(): string {
+    const style = getComputedStyle(document.documentElement);
+    return style.getPropertyValue("--primary");
+  }
+
   registerBarColor(theme: string): symbol {
     const symbol = Symbol();
     this.barColorStack.push([symbol, theme]);

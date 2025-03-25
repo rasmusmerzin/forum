@@ -1,6 +1,5 @@
 import { Component, inject, OnDestroy, OnInit } from "@angular/core";
 import { ThemeService } from "../../theme/theme.service";
-import { THEME_COLOR } from "../../app.properties";
 import { AccountService } from "../../account/account.service";
 import { RouterLink } from "@angular/router";
 import { SpinnerComponent } from "../../spinner/spinner.component";
@@ -24,7 +23,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   loading = false;
 
   async ngOnInit() {
-    this.themeSymbol = this.themeService.registerBarColor(THEME_COLOR);
+    this.themeSymbol = this.themeService.registerBarColor(
+      this.themeService.getPrimaryColor(),
+    );
     this.username = this.authenticationService.getUsername();
     if (!this.username) return;
     try {
