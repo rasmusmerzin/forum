@@ -15,7 +15,8 @@ export class AccountService {
   }
 
   async update(update: AccountUpdate): Promise<void> {
-    const response = await fetch(this.url, {
+    const url = new URL("/account", this.url);
+    const response = await fetch(url, {
       method: "PATCH",
       headers: this.headers({ "Content-Type": "application/json" }),
       body: JSON.stringify(update),
@@ -69,7 +70,7 @@ export class AccountService {
   headers(init: Record<string, string> = {}): Record<string, string> {
     const jwt = this.jwt();
     const headers: Record<string, string> = { ...init };
-    if (jwt) headers["Authentication"] = `Bearer ${jwt}`;
+    if (jwt) headers["Authorization"] = `Bearer ${jwt}`;
     return headers;
   }
 }
