@@ -2,7 +2,7 @@ import { Routes } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
 import { NewComponent } from "./new/new.component";
 import { MeComponent } from "./me/me.component";
-import { SettingsComponent } from "./me/settings/settings.component";
+import { EditComponent } from "./me/edit/edit.component";
 import { LogoutComponent } from "./me/logout/logout.component";
 
 export const routes: Routes = [
@@ -30,7 +30,7 @@ export const routes: Routes = [
     ],
   },
   {
-    path: "me/settings",
-    component: SettingsComponent,
+    path: "me/edit",
+    component: EditComponent,
   },
 ];

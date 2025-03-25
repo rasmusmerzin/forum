@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { SpinnerComponent } from "../../../spinner/spinner.component";
 
 @Component({
-  selector: "app-settings-header",
+  selector: "app-edit-header",
   imports: [SpinnerComponent],
   templateUrl: "./header.component.html",
   styleUrl: "./header.component.scss",

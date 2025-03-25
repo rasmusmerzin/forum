@@ -4,17 +4,15 @@ import { AccountService } from "../../account/account.service";
 import { AuthenticationService } from "../../authentication/authentication.service";
 import { FormsModule } from "@angular/forms";
 import { SpinnerComponent } from "../../spinner/spinner.component";
-import { Router } from "@angular/router";
 import { AccountUpdate } from "../../account/account";
 
 @Component({
-  selector: "app-settings",
+  selector: "app-edit",
   imports: [FormsModule, HeaderComponent, SpinnerComponent],
-  templateUrl: "./settings.component.html",
-  styleUrl: "./settings.component.scss",
+  templateUrl: "./edit.component.html",
+  styleUrl: "./edit.component.scss",
 })
-export class SettingsComponent implements OnInit {
-  router = inject(Router);
+export class EditComponent implements OnInit {
   accountService = inject(AccountService);
   authenticationService = inject(AuthenticationService);
 
@@ -54,7 +52,7 @@ export class SettingsComponent implements OnInit {
         email: this.email,
       };
       await this.accountService.update(update);
-      this.router.navigate(["/me"]);
+      history.back();
     } catch (error: any) {
       console.error(error);
     } finally {
