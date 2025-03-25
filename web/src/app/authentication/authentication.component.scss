@@ -12,7 +12,6 @@
   justify-content: center;
   align-items: flex-start;
   padding-top: 64px;
-  animation: fade-in 300ms backwards;
   &::before {
     content: "";
     position: fixed;
@@ -26,12 +25,6 @@
   }
   &.removed {
     animation: fade-out 300ms forwards;
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
   }
 }
 

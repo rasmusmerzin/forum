@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, model, Output } from "@angular/core";
 
 @Component({
   selector: "app-new-header",
@@ -9,18 +9,12 @@ import { Component, EventEmitter, Output } from "@angular/core";
 export class HeaderComponent {
   @Output()
   postClickEvent = new EventEmitter();
+  @Output()
+  previewClickEvent = new EventEmitter();
 
-  preview = false;
+  preview = model(false);
 
   onBackClick() {
     history.back();
-  }
-
-  onPostClick() {
-    this.postClickEvent.emit();
-  }
-
-  onPreviewClick() {
-    this.preview = !this.preview;
   }
 }

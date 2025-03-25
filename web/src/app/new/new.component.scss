@@ -2,20 +2,27 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  textarea {
-    resize: none;
-    border: none;
-    font-family: inherit;
+  main {
     width: 640px;
     max-width: 100%;
     margin: 0 auto;
-    font-size: 18px;
-    line-height: 1;
-    padding: 16px;
-    outline: none;
-    border-bottom: 1px solid #888;
-    &::placeholder {
-      color: #888;
+    overflow: auto;
+    div {
+      padding: 16px;
+    }
+    textarea {
+      width: 100%;
+      resize: none;
+      border: none;
+      border-bottom: 1px solid #888;
+      font-family: inherit;
+      font-size: 18px;
+      line-height: 1;
+      padding: 16px;
+      outline: none;
+      &::placeholder {
+        color: #888;
+      }
     }
   }
 }

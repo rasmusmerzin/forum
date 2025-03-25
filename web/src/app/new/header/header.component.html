@@ -7,9 +7,17 @@
     </svg>
   </button>
   <div class="actions">
-    <button class="preview" [class.active]="preview" (click)="onPreviewClick()">
-      Preview
+    <button
+      class="preview"
+      [class.active]="preview()"
+      (click)="previewClickEvent.emit()"
+    >
+      @if (preview()) {
+        Edit
+      } @else {
+        Preview
+      }
     </button>
-    <button class="post" (click)="onPostClick()">Post</button>
+    <button class="post" (click)="postClickEvent.emit()">Post</button>
   </div>
 </div>

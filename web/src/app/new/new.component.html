@@ -1,8 +1,15 @@
-<app-new-header />
+<app-new-header [(preview)]="preview" (previewClickEvent)="togglePreview()" />
 
-<textarea
-  #textarea
-  spellcheck="false"
-  placeholder="What's on your mind?"
-  (input)="resizeTextarea()"
-></textarea>
+<main #main>
+  @if (preview) {
+    <div>{{ content }}</div>
+  } @else {
+    <textarea
+      #textarea
+      spellcheck="false"
+      placeholder="What's on your mind?"
+      [(ngModel)]="content"
+      (input)="resizeTextarea()"
+    ></textarea>
+  }
+</main>
