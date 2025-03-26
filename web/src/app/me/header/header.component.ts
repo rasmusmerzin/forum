@@ -21,11 +21,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
   themeService = inject(ThemeService);
   themeSymbol?: symbol;
   loading = false;
+  control = new AbortController();
+  colorHeight = 120;
 
-  async ngOnInit() {
-    this.themeSymbol = this.themeService.registerBarColor(
-      this.themeService.getPrimaryColor(),
-    );
+  ngOnInit() {
+    this.activateBar();
+    this.loadProfile();
+    addEventListener("scroll", this.onScroll.bind(this), {
+      passive: true,
+      signal: this.control.signal,
+    });
+  }
+
+  ngOnDestroy() {
+    this.deactivateBar();
+    this.control.abort();
+  }
+
+  async loadProfile() {
     this.username = this.authenticationService.getUsername();
     if (!this.username) return;
     try {
@@ -40,7 +53,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
+  onScroll() {
+    if (scrollY < this.colorHeight) this.activateBar();
+    else this.deactivateBar();
+  }
+
+  activateBar() {
+    if (this.themeSymbol) return;
+    this.themeSymbol = this.themeService.registerBarColor(
+      this.themeService.getPrimaryColor(),
+    );
+  }
+
+  deactivateBar() {
+    if (!this.themeSymbol) return;
     this.themeService.unregisterBarColor(this.themeSymbol!);
+    this.themeSymbol = undefined;
   }
 }

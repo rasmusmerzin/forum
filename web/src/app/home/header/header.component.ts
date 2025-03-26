@@ -66,6 +66,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   deactivateBar() {
+    if (!this.themeSymbol) return;
     this.themeService.unregisterBarColor(this.themeSymbol!);
     this.themeSymbol = undefined;
   }
