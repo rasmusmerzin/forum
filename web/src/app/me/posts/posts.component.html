@@ -1,6 +1,6 @@
 @if (posts) {
   @for (post of posts; track post.id) {
-    <app-post-card [post]="post" />
+    <app-post-card [post]="post" [maxLines]="3" />
   } @empty {
     <p>No posts yet.</p>
   }

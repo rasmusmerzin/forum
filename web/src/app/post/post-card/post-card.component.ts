@@ -21,6 +21,9 @@ export class PostCardComponent implements OnChanges {
 
   @Input()
   post: DeepPartial<Post> = {};
+  @Input()
+  @HostBinding("style.--lines")
+  maxLines = 0;
 
   @HostBinding("style.cursor")
   cursor = "none";

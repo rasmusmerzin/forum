@@ -11,4 +11,11 @@
     font-weight: bold;
     font-size: 14px;
   }
+  .content {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: var(--lines, 0);
+    line-clamp: var(--lines, 0);
+  }
 }
