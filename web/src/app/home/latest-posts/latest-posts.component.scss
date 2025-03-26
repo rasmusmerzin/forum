@@ -1,0 +1,17 @@
+:host {
+  > p {
+    text-align: center;
+    margin: 24px;
+  }
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 24px;
+  }
+  .more {
+    display: flex;
+    justify-content: center;
+    margin: 24px 0;
+  }
+}

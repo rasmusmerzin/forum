@@ -32,7 +32,7 @@ export class PostService {
   }
 
   async fetchNewPosts(before?: string | Date): Promise<Post[]> {
-    let url = new URL("new", this.url).href;
+    let url = new URL("list/new", this.url).href;
     if (before) url += `?before=${new Date(before).toISOString()}`;
     const response = await fetch(url);
     if (!response.ok) throw new Error(await response.text());
