@@ -23,6 +23,7 @@
       text-decoration: none;
       color: var(--foreground);
       font-size: 12px;
+      font-weight: 600;
       svg {
         fill: var(--foreground);
       }
@@ -42,7 +43,8 @@
           background: var(--primary);
           border-radius: 100%;
           padding: 2px;
-          transform: scale(2.5) translateY(-8px);
+          transform: translateY(-18px) scale(2.5);
+          box-shadow: 0 0 16px var(--background);
         }
       }
     }

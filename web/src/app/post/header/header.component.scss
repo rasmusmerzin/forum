@@ -10,14 +10,5 @@
     height: 48px;
     justify-content: space-between;
     background: var(--background);
-    button {
-      font-weight: bold;
-      padding: 0;
-      border: none;
-      background: #0000;
-      > svg {
-        fill: var(--foreground);
-      }
-    }
   }
 }
