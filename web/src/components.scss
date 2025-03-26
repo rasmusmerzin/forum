@@ -60,12 +60,9 @@
   background: none;
   padding: 0;
   fill: var(--foreground);
-  position: absolute;
   width: min-content;
   height: min-content;
   border-radius: 100%;
-  top: 16px;
-  right: 16px;
   opacity: 0.5;
   transition: opacity 200ms;
   &:hover {

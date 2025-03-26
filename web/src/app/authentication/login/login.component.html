@@ -1,4 +1,4 @@
-<button class="close" (click)="close()">
+<button class="button-icon close" (click)="close()">
   <svg width="28px" height="28px" viewBox="0 -960 960 960">
     <path
       d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
@@ -20,6 +20,7 @@
     />
   </svg>
   <input
+    class="input-basic"
     name="username"
     type="text"
     placeholder="Username"
@@ -33,6 +34,7 @@
     />
   </svg>
   <input
+    class="input-basic"
     name="password"
     type="password"
     placeholder="Password"
@@ -44,9 +46,11 @@
     <input type="checkbox" [(ngModel)]="rememberMe" />
     <span>Remember me</span>
   </div>
-  <button (click)="unimplemented()">Forgot password?</button>
+  <button class="button-text" (click)="unimplemented()">
+    Forgot password?
+  </button>
 </div>
-<button class="main" (click)="login()" [disabled]="loading">
+<button class="main button-basic" (click)="login()" [disabled]="loading">
   @if (loading) {
     <app-spinner color="#fff" [size]="16" />
   } @else {
@@ -55,7 +59,7 @@
 </button>
 <div class="divider"><span>Or sign in with</span></div>
 <div class="openid">
-  <button (click)="unimplemented()">
+  <button class="button-hover-highlight" (click)="unimplemented()">
     <svg x="0px" y="0px" width="24px" height="24px" viewBox="0 0 48 48">
       <path
         fill="#fbc02d"
@@ -75,7 +79,7 @@
       ></path>
     </svg>
   </button>
-  <button (click)="unimplemented()">
+  <button class="button-hover-highlight" (click)="unimplemented()">
     <svg width="24px" height="24px" viewBox="0 0 48 48">
       <linearGradient
         id="Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1"
@@ -98,7 +102,7 @@
       ></path>
     </svg>
   </button>
-  <button (click)="unimplemented()">
+  <button class="button-hover-highlight" (click)="unimplemented()">
     <svg height="24px" width="24px" viewBox="0 0 31.956 31.956">
       <path
         d="M5.781 22.67c-.068 0-.125.028-.147.08-.037.08.028.188.144.24.114.054.238.03.274-.05.04-.079-.026-.188-.143-.24a.3.3 0 0 0-.128-.03m.656.55a.16.16 0 0 0-.111.037c-.078.071-.058.22.047.331.101.112.25.145.326.074.08-.072.06-.219-.045-.332a.33.33 0 0 0-.217-.11m.62.816a.16.16 0 0 0-.083.028c-.1.068-.1.238-.002.38.099.142.259.206.357.138.1-.07.1-.24.003-.384-.076-.106-.184-.167-.274-.162m.768.908a.2.2 0 0 0-.134.058c-.088.097-.05.28.09.408.137.132.324.158.411.061.094-.096.052-.28-.087-.408a.4.4 0 0 0-.28-.119m1.162.695c-.13-.001-.238.055-.266.15-.037.126.081.273.262.327s.36-.004.4-.128c.037-.128-.081-.273-.262-.327a.5.5 0 0 0-.134-.022m2.608.055-.07.007c-.185.034-.32.166-.297.298.024.127.196.207.381.172.189-.035.32-.166.298-.295-.02-.114-.153-.187-.312-.182m-1.25.156c-.19.004-.341.112-.341.245.002.13.156.237.348.232.19-.003.343-.112.339-.244 0-.13-.156-.236-.346-.233"
@@ -111,5 +115,5 @@
 </div>
 <div class="sign-up">
   Don't have an account?
-  <button (click)="signUpClickEvent.emit()">Sign up</button>
+  <button class="button-text" (click)="signUpClickEvent.emit()">Sign up</button>
 </div>
