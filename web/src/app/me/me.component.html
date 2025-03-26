@@ -1,25 +1,6 @@
 <app-me-header />
 
-@if (posts) {
-  @for (post of posts; track post.id) {
-    <app-post-card
-      [username]="post.author.username"
-      [content]="post.content"
-      (click)="onPostClick(post)"
-    />
-  } @empty {
-    <p>No posts yet.</p>
-  }
-}
-@if (loading) {
-  <div class="loading">
-    <app-spinner />
-  </div>
-} @else if (before) {
-  <div class="more">
-    <button (click)="loadMorePosts()">Load more</button>
-  </div>
-}
+<app-me-posts />
 
 <app-navigation />
 
