@@ -1,6 +1,5 @@
 import { Component, inject, OnDestroy, OnInit } from "@angular/core";
 import { ThemeService } from "../../theme/theme.service";
-import { HomeView, homeView } from "../home.state";
 import { AuthenticationService } from "../../authentication/authentication.service";
 
 @Component({
@@ -10,7 +9,6 @@ import { AuthenticationService } from "../../authentication/authentication.servi
   styleUrl: "./header.component.scss",
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  selectedView: HomeView = "popular";
   authenticationService = inject(AuthenticationService);
   themeService = inject(ThemeService);
   themeSymbol?: symbol;
@@ -20,15 +18,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.themeSymbol = this.themeService.registerBarColor(
       this.themeService.getPrimaryColor(),
     );
-    this.selectedView = homeView();
-    this.loggedIn = !!this.authenticationService.jwt();
+    this.loggedIn = this.authenticationService.isLoggedIn();
   }
 
   ngOnDestroy() {
     this.themeService.unregisterBarColor(this.themeSymbol!);
-  }
-
-  onViewClick(view: HomeView) {
-    homeView.set((this.selectedView = view));
   }
 }

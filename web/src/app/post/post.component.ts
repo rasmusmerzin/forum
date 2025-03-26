@@ -13,7 +13,6 @@ import { PostCardComponent } from "./post-card/post-card.component";
   styleUrl: "./post.component.scss",
 })
 export class PostComponent implements OnInit {
-  JSON = JSON;
   route = inject(ActivatedRoute);
   postService = inject(PostService);
 
