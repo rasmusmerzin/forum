@@ -11,12 +11,13 @@ import { AuthenticationService } from "../authentication/authentication.service"
 import { FormsModule } from "@angular/forms";
 import { PostService } from "../post/post.service";
 import { Router } from "@angular/router";
+import { PostCardComponent } from "../post/post-card/post-card.component";
 
 const { virtualKeyboard } = navigator as any;
 
 @Component({
   selector: "app-new",
-  imports: [FormsModule, HeaderComponent],
+  imports: [FormsModule, HeaderComponent, PostCardComponent],
   templateUrl: "./new.component.html",
   styleUrl: "./new.component.scss",
 })
@@ -28,6 +29,7 @@ export class NewComponent implements AfterViewInit, OnDestroy {
   @ViewChild("textarea")
   textarea?: ElementRef<HTMLElement | null>;
 
+  username = this.authenticationService.getUsername();
   content = "";
   preview = false;
   loading = false;

@@ -7,7 +7,7 @@
 
 <main>
   @if (preview) {
-    <div>{{ content }}</div>
+    <app-post-card [username]="username" [content]="content" />
   } @else {
     <textarea
       #textarea

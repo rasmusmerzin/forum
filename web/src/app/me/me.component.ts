@@ -25,18 +25,28 @@ export class MeComponent implements OnInit, OnDestroy {
   authenticationService = inject(AuthenticationService);
   postService = inject(PostService);
 
-  posts: Post[] = [];
+  posts?: Post[];
   loading = true;
+  before = "";
 
-  async ngOnInit() {
+  ngOnInit() {
+    setTimeout(() => this.authenticationService.checkLogin());
+    this.loadMorePosts();
+  }
+
+  async loadMorePosts() {
     const username = this.authenticationService.getUsername();
-    if (!username) {
-      setTimeout(() => this.authenticationService.checkLogin());
-      return;
-    }
+    if (!username) return;
     try {
       this.loading = true;
-      this.posts = await this.postService.fetchUserPosts(username);
+      const posts = await this.postService.fetchUserPosts(
+        username,
+        this.before,
+      );
+      if (!this.posts) this.posts = posts;
+      else this.posts.push(...posts);
+      if (posts.length === 10) this.before = posts[posts.length - 1].created;
+      else this.before = "";
     } catch (error) {
       console.error(error);
     } finally {
