@@ -10,30 +10,10 @@
     height: 48px;
     justify-content: space-between;
     background: var(--background);
-    button {
-      font-weight: bold;
-      padding: 0;
-      border: none;
-      background: #0000;
-      > svg {
-        fill: var(--foreground);
-      }
-    }
     .actions {
       display: flex;
       grid-gap: 8px;
       button {
-        padding: 0 16px;
-        height: 32px;
-        font-size: 16px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        white-space: nowrap;
-        line-height: 1;
-        border-radius: 16px;
-        overflow: hidden;
-        position: relative;
         transition:
           background 200ms,
           color 200ms,
@@ -41,6 +21,7 @@
         &.preview {
           position: relative;
           color: var(--foreground);
+          background: none;
           &::before {
             content: "";
             position: absolute;
@@ -57,13 +38,6 @@
             &::before {
               display: none;
             }
-          }
-        }
-        &.post {
-          color: #fff;
-          background: var(--primary);
-          &:hover {
-            filter: brightness(1.25);
           }
         }
       }
