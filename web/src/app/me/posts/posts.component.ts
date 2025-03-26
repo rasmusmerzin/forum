@@ -44,8 +44,4 @@ export class PostsComponent implements OnInit {
       this.loading = false;
     }
   }
-
-  onPostClick(post: Post) {
-    this.router.navigate(["/post", post.id]);
-  }
 }

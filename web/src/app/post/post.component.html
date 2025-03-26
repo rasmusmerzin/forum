@@ -5,5 +5,5 @@
     <app-spinner />
   </div>
 } @else if (post) {
-  <app-post-card [username]="post.author.username" [content]="post.content" />
+  <app-post-card [post]="post" />
 }

@@ -34,6 +34,17 @@ export class LoginComponent {
     event.stopPropagation();
   }
 
+  onUsernameInput() {
+    setTimeout(
+      () =>
+        (this.username = this.username
+          .split("")
+          .filter((c) => /[A-Za-z0-9_]/.test(c))
+          .join("")
+          .toLowerCase()),
+    );
+  }
+
   close() {
     history.back();
   }

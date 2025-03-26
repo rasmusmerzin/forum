@@ -12,6 +12,8 @@ import { FormsModule } from "@angular/forms";
 import { PostService } from "../post/post.service";
 import { Router } from "@angular/router";
 import { PostCardComponent } from "../post/post-card/post-card.component";
+import { Post } from "../post/post";
+import { DraftService } from "../draft/draft.service";
 
 const { virtualKeyboard } = navigator as any;
 
@@ -22,6 +24,7 @@ const { virtualKeyboard } = navigator as any;
   styleUrl: "./new.component.scss",
 })
 export class NewComponent implements AfterViewInit, OnDestroy {
+  draftService = inject(DraftService);
   authenticationService = inject(AuthenticationService);
   postService = inject(PostService);
   router = inject(Router);
@@ -30,15 +33,32 @@ export class NewComponent implements AfterViewInit, OnDestroy {
   textarea?: ElementRef<HTMLElement | null>;
 
   username = this.authenticationService.getUsername();
-  content = "";
+  content = this.draftService.getContent();
   preview = false;
   loading = false;
 
-  async post() {
-    if (!this.content.trim()) return;
+  get post(): DeepPartial<Post> {
+    return {
+      author: { username: this.username },
+      content: this.content,
+    };
+  }
+
+  onInput() {
+    this.draftService.setContent(this.content);
+    this.resizeTextarea();
+  }
+
+  async createPost() {
+    if (!this.content.trim()) {
+      if (this.preview) this.togglePreview();
+      setTimeout(() => this.textarea?.nativeElement?.focus());
+      return;
+    }
     try {
       this.loading = true;
       const { id } = await this.postService.createPost(this.content);
+      this.draftService.clearContent();
       this.router.navigate(["/post", id], { replaceUrl: true });
     } catch (error: any) {
       console.error(error);

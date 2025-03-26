@@ -1,20 +1,20 @@
 <app-new-header
   [loading]="loading"
   [(preview)]="preview"
-  (postClickEvent)="post()"
+  (postClickEvent)="createPost()"
   (previewClickEvent)="togglePreview()"
 />
 
 <main>
   @if (preview) {
-    <app-post-card [username]="username" [content]="content" />
+    <app-post-card [post]="post" />
   } @else {
     <textarea
       #textarea
       spellcheck="false"
       placeholder="What's on your mind?"
       [(ngModel)]="content"
-      (input)="resizeTextarea()"
+      (input)="onInput()"
     ></textarea>
   }
 </main>

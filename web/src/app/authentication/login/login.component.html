@@ -20,11 +20,13 @@
     />
   </svg>
   <input
+    spellcheck="false"
     class="input-basic"
     name="username"
     type="text"
     placeholder="Username"
     [(ngModel)]="username"
+    (input)="onUsernameInput()"
   />
 </div>
 <div class="input">

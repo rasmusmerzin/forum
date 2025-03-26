@@ -32,7 +32,7 @@ public class Account implements UserDetails {
 
 	public Account(AccountRegistration registration) {
 		this.id = UUID.randomUUID();
-		this.username = registration.username();
+		this.username = registration.username().replaceAll("\\s", "").toLowerCase();
 		this.password = passwordEncoder().encode(registration.password());
 		this.created = ZonedDateTime.now();
 	}
