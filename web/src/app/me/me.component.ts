@@ -2,12 +2,11 @@ import { Component, inject, OnDestroy, OnInit } from "@angular/core";
 import { NavigationComponent } from "../navigation/navigation.component";
 import { HeaderComponent } from "./header/header.component";
 import { AuthenticationService } from "../authentication/authentication.service";
-import { RouterOutlet } from "@angular/router";
 import { PostsComponent } from "./posts/posts.component";
 
 @Component({
   selector: "app-me",
-  imports: [RouterOutlet, NavigationComponent, HeaderComponent, PostsComponent],
+  imports: [NavigationComponent, HeaderComponent, PostsComponent],
   templateUrl: "./me.component.html",
   styleUrl: "./me.component.scss",
 })

@@ -37,6 +37,7 @@ export class AuthenticationService {
 
   logout(): void {
     this.jwt = "";
+    sessionStorage.removeItem("jwt");
     localStorage.removeItem("jwt");
   }
 
