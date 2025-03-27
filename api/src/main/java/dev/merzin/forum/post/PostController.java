@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +26,12 @@ public class PostController {
 		var authentication = SecurityContextHolder.getContext().getAuthentication();
 		var post = postService.createPost(postCreation, authentication.getName());
 		return new PostResponse(post);
+	}
+
+	@DeleteMapping("/{id}")
+	public void deletePost(@PathVariable UUID id) {
+		var authentication = SecurityContextHolder.getContext().getAuthentication();
+		postService.deletePost(id, authentication.getName());
 	}
 
 	@GetMapping("/{id}")

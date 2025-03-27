@@ -24,6 +24,16 @@ export class PostService {
     return response.json();
   }
 
+  async deletePost(id: string): Promise<void> {
+    const url = new URL(id, this.url);
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: this.authenticationService.headers(),
+    });
+    if (!response.ok)
+      throw new Error((await response.text()) || "Failed to delete post");
+  }
+
   async fetchPost(id: string): Promise<Post> {
     const url = new URL(id, this.url);
     const response = await fetch(url);

@@ -22,6 +22,13 @@ public class PostService {
 		return postRepository.save(post);
 	}
 
+	public void deletePost(UUID id, String username) {
+		var post = postRepository.findById(id).orElse(null);
+		if (post == null) return;
+		if (!post.getAuthor().getUsername().equals(username)) return;
+		postRepository.delete(post);
+	}
+
 	public Post getPost(UUID id) {
 		return postRepository.findById(id).orElse(null);
 	}
