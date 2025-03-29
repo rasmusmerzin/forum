@@ -75,6 +75,10 @@ export class RegisterComponent {
       this.error = "Passwords do not match";
       return false;
     }
+    if (this.password.length < 8) {
+      this.error = "Password must be at least 8 characters";
+      return false;
+    }
     return true;
   }
 
