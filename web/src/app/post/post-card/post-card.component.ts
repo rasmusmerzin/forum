@@ -20,7 +20,7 @@ export class PostCardComponent implements OnChanges {
   router = inject(Router);
 
   @Input()
-  post: DeepPartial<Post> = {};
+  post: Partial<Post> = {};
   @Input()
   @HostBinding("style.--lines")
   maxLines = 0;
@@ -38,7 +38,7 @@ export class PostCardComponent implements OnChanges {
   }
 
   get username(): string {
-    return this.post.author?.username || "";
+    return this.post.username || "";
   }
 
   get content(): string {

@@ -22,7 +22,7 @@ export class HeaderComponent {
   }
 
   async onDeleteClick() {
-    if (!this.post || this.post.author.username !== this.username) return;
+    if (!this.post || this.post.username !== this.username) return;
     if (!confirm("Are you sure you want to delete this post?")) return;
     const { id } = this.post;
     await this.postService.deletePost(id);

@@ -37,9 +37,9 @@ export class NewComponent implements AfterViewInit, OnDestroy {
   preview = false;
   loading = false;
 
-  get post(): DeepPartial<Post> {
+  get post(): Partial<Post> {
     return {
-      author: { username: this.username },
+      username: this.username,
       content: this.content,
     };
   }
