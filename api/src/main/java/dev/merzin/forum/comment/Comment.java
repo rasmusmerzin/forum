@@ -1,4 +1,4 @@
-package dev.merzin.forum.post;
+package dev.merzin.forum.comment;
 
 import java.time.ZonedDateTime;
 import java.util.UUID;
@@ -11,22 +11,23 @@ import lombok.Getter;
 
 @Entity
 @Getter
-public class Post {
+public class Comment {
 	@Id
 	private UUID id;
+	private UUID postId;
 	@OneToOne
 	private Account author;
 	private String content;
 	private ZonedDateTime created;
-	private int comments;
 	private int favorites;
 
-	public Post() {}
+	public Comment() {}
 
-	public Post(PostCreation postCreation, Account author) {
+	public Comment(CommentCreation commentCreation, Account author) {
 		this.id = UUID.randomUUID();
+		this.postId = commentCreation.postId();
 		this.author = author;
-		this.content = postCreation.content();
+		this.content = commentCreation.content();
 		this.created = ZonedDateTime.now();
 	}
 }

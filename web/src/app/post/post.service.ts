@@ -41,20 +41,17 @@ export class PostService {
     return response.json();
   }
 
-  async fetchNewPosts(before?: string | Date): Promise<Post[]> {
+  async fetchNewPosts(before?: string): Promise<Post[]> {
     let url = new URL("list/new", this.url).href;
-    if (before) url += `?before=${new Date(before).toISOString()}`;
+    if (before) url += `?before=${before}`;
     const response = await fetch(url);
     if (!response.ok) throw new Error(await response.text());
     return response.json();
   }
 
-  async fetchUserPosts(
-    username: string,
-    before?: string | Date,
-  ): Promise<Post[]> {
+  async fetchUserPosts(username: string, before?: string): Promise<Post[]> {
     let url = new URL(`list/user/${username}`, this.url).href;
-    if (before) url += `?before=${new Date(before).toISOString()}`;
+    if (before) url += `?before=${before}`;
     const response = await fetch(url);
     if (!response.ok) throw new Error(await response.text());
     return response.json();

@@ -11,11 +11,15 @@ public class PostResponse {
 	private String username;
 	private String content;
 	private ZonedDateTime created;
+	private int comments;
+	private int favorites;
 
 	public PostResponse(Post post) {
 		this.id = post.getId();
 		this.username = post.getAuthor().getUsername();
 		this.content = post.getContent();
 		this.created = post.getCreated();
+		this.comments = post.getComments();
+		this.favorites = post.getFavorites();
 	}
 }
