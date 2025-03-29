@@ -12,6 +12,7 @@
     font-size: 14px;
   }
   .content {
+    margin: 4px 0 8px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -19,7 +20,6 @@
     line-clamp: var(--lines, 0);
   }
   .stats {
-    margin-top: 4px;
     display: flex;
     grid-gap: 16px;
     > button {

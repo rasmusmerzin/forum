@@ -54,7 +54,7 @@
 </div>
 <button class="main button-basic" (click)="login()" [disabled]="loading">
   @if (loading) {
-    <app-spinner color="#fff" [size]="16" />
+    <app-spinner color="var(--primary-foreground)" [size]="16" />
   } @else {
     Sign in
   }

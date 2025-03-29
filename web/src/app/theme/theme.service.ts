@@ -18,6 +18,11 @@ export class ThemeService {
     return style.getPropertyValue("--primary");
   }
 
+  getPrimaryForegroundColor(): string {
+    const style = getComputedStyle(document.documentElement);
+    return style.getPropertyValue("--primary-foreground");
+  }
+
   registerBarColor(theme: string): symbol {
     const symbol = Symbol();
     this.barColorStack.push([symbol, theme]);

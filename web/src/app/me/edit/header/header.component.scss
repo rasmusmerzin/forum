@@ -36,7 +36,7 @@
         overflow: hidden;
         position: relative;
         &.save {
-          color: #fff;
+          color: var(--primary-foreground);
           background: var(--primary);
           &:hover {
             filter: brightness(1.25);

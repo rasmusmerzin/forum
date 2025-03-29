@@ -45,13 +45,26 @@
         font-weight: 900;
         color: var(--primary);
         svg {
-          fill: #fff;
+          fill: var(--primary-foreground);
           background: var(--primary);
           border-radius: 100%;
           padding: 2px;
           transform: translateY(-18px) scale(2.5);
-          box-shadow: 0 0 16px var(--background);
         }
+      }
+    }
+  }
+  &.light-primary {
+    a.active {
+      text-shadow: 0 0 4px #0008;
+      svg {
+        filter: drop-shadow(0 0 2px #0006);
+      }
+    }
+    a.new {
+      text-shadow: 0 0 4px #0008;
+      svg {
+        filter: drop-shadow(0 0 2px #0004);
       }
     }
   }
