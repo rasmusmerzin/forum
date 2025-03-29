@@ -1,8 +1,19 @@
 :host {
+  display: block;
+  padding-bottom: 96px;
+  > p {
+    text-align: center;
+    margin: 24px;
+  }
   .loading {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 32px;
+  }
+  .more {
+    display: flex;
+    justify-content: center;
+    margin: 24px 0;
   }
 }

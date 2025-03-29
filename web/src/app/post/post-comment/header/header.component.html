@@ -18,7 +18,11 @@
         Preview
       }
     </button>
-    <button class="button-basic-sm comment" (click)="commentClickEvent.emit()">
+    <button
+      class="button-basic-sm comment"
+      (click)="commentClickEvent.emit()"
+      [disabled]="loading"
+    >
       Comment
       @if (loading) {
         <app-spinner

@@ -18,7 +18,11 @@
         Preview
       }
     </button>
-    <button class="button-basic-sm post" (click)="postClickEvent.emit()">
+    <button
+      class="button-basic-sm post"
+      (click)="postClickEvent.emit()"
+      [disabled]="loading"
+    >
       Post
       @if (loading) {
         <app-spinner
