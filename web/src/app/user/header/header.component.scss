@@ -1,0 +1,20 @@
+:host {
+  position: sticky;
+  top: -48px;
+  display: flex;
+  justify-content: center;
+  background: var(--primary);
+  transition: top 100ms;
+  div {
+    width: 640px;
+    max-width: 100%;
+    padding: 0 16px;
+    height: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    svg {
+      fill: var(--primary-foreground);
+    }
+  }
+}

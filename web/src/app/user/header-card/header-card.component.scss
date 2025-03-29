@@ -4,21 +4,8 @@
   align-items: center;
   .color {
     background: var(--primary);
-    height: 120px;
+    height: 72px;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    .actions {
-      display: flex;
-      justify-content: flex-end;
-      grid-gap: 8px;
-      padding: 16px 28px;
-      width: 640px;
-      max-width: 100%;
-      svg {
-        fill: var(--primary-foreground);
-      }
-    }
   }
   .profile {
     min-height: 128px;
@@ -47,16 +34,6 @@
     }
     .bio {
       margin-top: 8px;
-    }
-    .actions {
-      top: 16px;
-      right: 16px;
-      position: absolute;
-      display: flex;
-      grid-gap: 8px;
-      svg {
-        fill: var(--foreground);
-      }
     }
   }
 }

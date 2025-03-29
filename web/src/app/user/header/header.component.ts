@@ -8,7 +8,7 @@ import {
 import { ThemeService } from "../../theme/theme.service";
 
 @Component({
-  selector: "app-home-header",
+  selector: "app-user-header",
   imports: [],
   templateUrl: "./header.component.html",
   styleUrl: "./header.component.scss",
@@ -18,12 +18,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   themeSymbol?: symbol;
 
   height = 48;
+  colorHeight = 120;
   @HostBinding("style.top")
   top = `-${this.height}px`;
-  @HostBinding("style.box-shadow")
-  shadow = "";
   scrollY = scrollY;
   control = new AbortController();
+
+  onBackClick() {
+    history.back();
+  }
 
   ngOnInit() {
     this.activateBar();
@@ -42,14 +45,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (Math.abs(scrollY - this.scrollY) < 4) return;
     if (scrollY < this.scrollY) {
       this.top = "0";
-      this.shadow = "";
       this.activateBar();
     } else if (scrollY > this.scrollY) {
       this.top = `-${this.height}px`;
-      if (this.scrollY > this.height) {
-        this.shadow = "none";
-        this.deactivateBar();
-      }
+      if (this.scrollY > this.colorHeight) this.deactivateBar();
     }
     this.scrollY = scrollY;
   }

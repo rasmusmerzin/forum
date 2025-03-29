@@ -10,7 +10,7 @@
   </div>
 </div>
 <div class="profile">
-  <div class="username">&#64;{{ username }}</div>
+  <a class="username" [routerLink]="'/user/' + username">&#64;{{ username }}</a>
   <div class="fullname">{{ fullName }}</div>
   <div class="email">{{ email }}</div>
   <div class="bio">{{ bio }}</div>

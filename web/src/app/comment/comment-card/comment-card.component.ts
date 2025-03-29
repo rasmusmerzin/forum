@@ -2,12 +2,12 @@ import { Component, HostBinding, inject, Input } from "@angular/core";
 import { Comment } from "../comment";
 import { CommentService } from "../comment.service";
 import { AuthenticationService } from "../../authentication/authentication.service";
-import { Router } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { FavoriteService } from "../../favorite/favorite.service";
 
 @Component({
   selector: "app-comment-card",
-  imports: [],
+  imports: [RouterLink],
   templateUrl: "./comment-card.component.html",
   styleUrl: "./comment-card.component.scss",
 })

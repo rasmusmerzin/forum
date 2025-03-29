@@ -1,0 +1,10 @@
+<div class="color"></div>
+<div class="profile">
+  <div class="username">&#64;{{ username }}</div>
+  <div class="fullname">{{ fullName }}</div>
+  <div class="email">{{ email }}</div>
+  <div class="bio">{{ bio }}</div>
+  @if (loading) {
+    <app-spinner [fill]="true" background="var(--background)" />
+  }
+</div>

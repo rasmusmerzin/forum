@@ -8,13 +8,13 @@ import {
   SimpleChanges,
 } from "@angular/core";
 import { Post } from "../post";
-import { Router } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { FavoriteService } from "../../favorite/favorite.service";
 import { AuthenticationService } from "../../authentication/authentication.service";
 
 @Component({
   selector: "app-post-card",
-  imports: [],
+  imports: [RouterLink],
   templateUrl: "./post-card.component.html",
   styleUrl: "./post-card.component.scss",
 })
