@@ -15,11 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.merzin.forum.favorite.FavoriteService;
+
 @RestController
 @RequestMapping("/post")
 public class PostController {
 	@Autowired
 	private PostService postService;
+	@Autowired
+	private FavoriteService favoriteService;
 
 	@PostMapping
 	public PostResponse createPost(@RequestBody PostCreation postCreation) {
@@ -36,12 +40,20 @@ public class PostController {
 
 	@GetMapping("/{id}")
 	public PostResponse getPost(@PathVariable UUID id) {
-		return new PostResponse(postService.getPost(id));
+		var authentication = SecurityContextHolder.getContext().getAuthentication();
+		var postResponse = new PostResponse(postService.getPost(id));
+		if (authentication != null)
+			favoriteService.populateFavorite(List.of(postResponse), authentication.getName());
+		return postResponse;
 	}
 
 	@GetMapping("/list/new")
 	public List<PostResponse> getNewPosts(@RequestParam(required = false) ZonedDateTime before) {
-		return postService.getNewPosts(before).stream().map(PostResponse::new).toList();
+		var authentication = SecurityContextHolder.getContext().getAuthentication();
+		var postResponses = postService.getNewPosts(before).stream().map(PostResponse::new).toList();
+		if (authentication != null)
+			favoriteService.populateFavorite(postResponses, authentication.getName());
+		return postResponses;
 	}
 
 	@GetMapping("/list/user/{username}")
@@ -49,6 +61,10 @@ public class PostController {
 		@PathVariable String username,
 		@RequestParam(required = false) ZonedDateTime before
 	) {
-		return postService.getMyPosts(username, before).stream().map(PostResponse::new).toList();
+		var authentication = SecurityContextHolder.getContext().getAuthentication();
+		var postResponses = postService.getMyPosts(username, before).stream().map(PostResponse::new).toList();
+		if (authentication != null)
+			favoriteService.populateFavorite(postResponses, authentication.getName());
+		return postResponses;
 	}
 }

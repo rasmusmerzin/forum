@@ -4,6 +4,7 @@ import java.time.ZonedDateTime;
 import java.util.UUID;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 public class PostResponse {
@@ -13,6 +14,8 @@ public class PostResponse {
 	private ZonedDateTime created;
 	private int comments;
 	private int favorites;
+	@Setter
+	private boolean favorited = false;
 
 	public PostResponse(Post post) {
 		this.id = post.getId();

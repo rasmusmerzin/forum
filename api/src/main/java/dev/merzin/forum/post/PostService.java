@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import dev.merzin.forum.account.AccountService;
 import dev.merzin.forum.comment.CommentRepository;
+import dev.merzin.forum.favorite.PostFavoriteRepository;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -17,6 +18,8 @@ public class PostService {
 	private PostRepository postRepository;
 	@Autowired
 	private CommentRepository commentRepository;
+	@Autowired
+	private PostFavoriteRepository postFavoriteRepository;
 	@Autowired
 	private AccountService accountService;
 
@@ -33,6 +36,8 @@ public class PostService {
 		if (!post.getAuthor().getUsername().equals(username)) return;
 		commentRepository.deleteByPostId(id);
 		commentRepository.flush();
+		postFavoriteRepository.deleteByPostId(id);
+		postFavoriteRepository.flush();
 		postRepository.delete(post);
 	}
 

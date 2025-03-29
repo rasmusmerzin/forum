@@ -36,7 +36,9 @@ export class PostService {
 
   async fetchPost(id: string): Promise<Post> {
     const url = new URL(id, this.url);
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      headers: this.authenticationService.headers(),
+    });
     if (!response.ok) throw new Error(await response.text());
     return response.json();
   }
@@ -44,7 +46,9 @@ export class PostService {
   async fetchNewPosts(before?: string): Promise<Post[]> {
     let url = new URL("list/new", this.url).href;
     if (before) url += `?before=${before}`;
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      headers: this.authenticationService.headers(),
+    });
     if (!response.ok) throw new Error(await response.text());
     return response.json();
   }
@@ -52,7 +56,9 @@ export class PostService {
   async fetchUserPosts(username: string, before?: string): Promise<Post[]> {
     let url = new URL(`list/user/${username}`, this.url).href;
     if (before) url += `?before=${before}`;
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      headers: this.authenticationService.headers(),
+    });
     if (!response.ok) throw new Error(await response.text());
     return response.json();
   }

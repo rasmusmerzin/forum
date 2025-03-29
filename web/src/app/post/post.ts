@@ -5,4 +5,5 @@ export interface Post {
   username: string;
   comments: number;
   favorites: number;
+  favorited: boolean;
 }

@@ -13,6 +13,7 @@
     font-size: 14px;
   }
   .content {
+    margin: 4px 0 8px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -20,13 +21,13 @@
     line-clamp: var(--lines, 0);
   }
   .stats {
-    margin-top: 4px;
     display: flex;
     grid-gap: 16px;
-    > button {
+    button {
       background: none;
       border: none;
-      padding: 0;
+      padding: 8px;
+      margin: -8px;
       display: flex;
       grid-gap: 4px;
       align-items: center;
@@ -34,7 +35,8 @@
   }
   .delete {
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 8px;
+    right: 8px;
+    padding: 8px;
   }
 }

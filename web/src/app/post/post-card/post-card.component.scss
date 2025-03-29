@@ -22,13 +22,30 @@
   .stats {
     display: flex;
     grid-gap: 16px;
-    > button {
+    button {
       background: none;
       border: none;
-      padding: 0;
+      padding: 8px;
+      margin: -8px;
       display: flex;
       grid-gap: 4px;
       align-items: center;
+      svg {
+        fill: var(--foreground);
+        .fill {
+          display: none;
+        }
+      }
+    }
+  }
+  &.favorited button.favorites {
+    color: var(--error);
+    font-weight: bold;
+    svg {
+      fill: var(--error);
+      .fill {
+        display: block;
+      }
     }
   }
 }
