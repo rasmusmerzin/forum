@@ -26,12 +26,18 @@
       font-weight: 600;
       svg {
         fill: var(--foreground);
+        .fill {
+          display: none;
+        }
       }
       &.active {
         font-weight: 900;
         color: var(--primary);
         svg {
           fill: var(--primary);
+          .fill {
+            display: block;
+          }
         }
       }
       &.new {
