@@ -15,11 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.merzin.forum.favorite.FavoriteService;
+
 @RestController
 @RequestMapping("/comment")
 public class CommentController {
 	@Autowired
 	private CommentService commentService;
+	@Autowired
+	private FavoriteService favoriteService;
 
 	@PostMapping
 	public CommentResponse createComment(@RequestBody CommentCreation commentCreation) {
@@ -39,6 +43,10 @@ public class CommentController {
 		@PathVariable UUID postId,
 		@RequestParam(required = false) ZonedDateTime after
 	) {
-		return commentService.getPostComments(postId, after).stream().map(CommentResponse::new).toList();
+		var authentication = SecurityContextHolder.getContext().getAuthentication();
+		var commentResponses = commentService.getPostComments(postId, after).stream().map(CommentResponse::new).toList();
+		if (authentication.isAuthenticated())
+			favoriteService.populateCommentFavorited(commentResponses, authentication.getName());
+		return commentResponses;
 	}
 }

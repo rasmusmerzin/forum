@@ -37,7 +37,9 @@ export class CommentService {
   async fetchPostComments(postId: string, after?: string): Promise<Comment[]> {
     let url = new URL(`list/post/${postId}`, this.url).href;
     if (after) url += `?after=${after}`;
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      headers: this.authenticationService.headers(),
+    });
     if (!response.ok) throw new Error(await response.text());
     return response.json();
   }

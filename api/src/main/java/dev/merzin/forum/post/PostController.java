@@ -42,8 +42,8 @@ public class PostController {
 	public PostResponse getPost(@PathVariable UUID id) {
 		var authentication = SecurityContextHolder.getContext().getAuthentication();
 		var postResponse = new PostResponse(postService.getPost(id));
-		if (authentication != null)
-			favoriteService.populateFavorite(List.of(postResponse), authentication.getName());
+		if (authentication.isAuthenticated())
+			favoriteService.populatePostFavorited(List.of(postResponse), authentication.getName());
 		return postResponse;
 	}
 
@@ -51,8 +51,8 @@ public class PostController {
 	public List<PostResponse> getNewPosts(@RequestParam(required = false) ZonedDateTime before) {
 		var authentication = SecurityContextHolder.getContext().getAuthentication();
 		var postResponses = postService.getNewPosts(before).stream().map(PostResponse::new).toList();
-		if (authentication != null)
-			favoriteService.populateFavorite(postResponses, authentication.getName());
+		if (authentication.isAuthenticated())
+			favoriteService.populatePostFavorited(postResponses, authentication.getName());
 		return postResponses;
 	}
 
@@ -63,8 +63,8 @@ public class PostController {
 	) {
 		var authentication = SecurityContextHolder.getContext().getAuthentication();
 		var postResponses = postService.getMyPosts(username, before).stream().map(PostResponse::new).toList();
-		if (authentication != null)
-			favoriteService.populateFavorite(postResponses, authentication.getName());
+		if (authentication.isAuthenticated())
+			favoriteService.populatePostFavorited(postResponses, authentication.getName());
 		return postResponses;
 	}
 }

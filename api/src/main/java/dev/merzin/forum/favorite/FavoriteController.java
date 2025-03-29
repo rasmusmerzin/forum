@@ -27,4 +27,16 @@ public class FavoriteController {
 		var username = SecurityContextHolder.getContext().getAuthentication().getName();
 		favoriteService.unfavoritePost(postId, username);
 	}
+
+	@PostMapping("/comment/{commentId}")
+	public void favoriteComment(@PathVariable UUID commentId) {
+		var username = SecurityContextHolder.getContext().getAuthentication().getName();
+		favoriteService.favoriteComment(commentId, username);
+	}
+
+	@DeleteMapping("/comment/{commentId}")
+	public void unfavoriteComment(@PathVariable UUID commentId) {
+		var username = SecurityContextHolder.getContext().getAuthentication().getName();
+		favoriteService.unfavoriteComment(commentId, username);
+	}
 }

@@ -5,4 +5,5 @@ export interface Comment {
   content: string;
   created: string;
   favorites: number;
+  favorited: boolean;
 }

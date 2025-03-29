@@ -1,7 +1,9 @@
-import { Component, inject, Input } from "@angular/core";
+import { Component, HostBinding, inject, Input } from "@angular/core";
 import { Comment } from "../comment";
 import { CommentService } from "../comment.service";
 import { AuthenticationService } from "../../authentication/authentication.service";
+import { Router } from "@angular/router";
+import { FavoriteService } from "../../favorite/favorite.service";
 
 @Component({
   selector: "app-comment-card",
@@ -10,12 +12,18 @@ import { AuthenticationService } from "../../authentication/authentication.servi
   styleUrl: "./comment-card.component.scss",
 })
 export class CommentCardComponent {
+  router = inject(Router);
   commentService = inject(CommentService);
-  authorizationService = inject(AuthenticationService);
+  authenticationService = inject(AuthenticationService);
+  favoriteService = inject(FavoriteService);
 
-  userUsername = this.authorizationService.getUsername();
+  userUsername = this.authenticationService.getUsername();
   @Input()
   comment: Partial<Comment> = {};
+  @HostBinding("class.favorited")
+  get favorited() {
+    return this.comment.favorited;
+  }
 
   get username(): string {
     return this.comment.username || "";
@@ -34,5 +42,23 @@ export class CommentCardComponent {
     if (!confirm("Are you sure you want to delete this comment?")) return;
     await this.commentService.deleteComment(this.comment.id);
     location.reload();
+  }
+
+  onFavoriteClick(event: MouseEvent) {
+    event.stopPropagation();
+    if (!this.comment.id || this.comment.favorited == null) return;
+    if (!this.authenticationService.getUsername()) {
+      this.router.navigate(["/me"]);
+      return;
+    }
+    this.comment.favorited = !this.comment.favorited;
+    this.comment.favorites = this.comment.favorites || 0;
+    if (this.comment.favorited) {
+      this.favoriteService.favoriteComment(this.comment.id);
+      this.comment.favorites++;
+    } else {
+      this.favoriteService.unfavoriteComment(this.comment.id);
+      this.comment.favorites--;
+    }
   }
 }

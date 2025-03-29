@@ -31,6 +31,12 @@
       display: flex;
       grid-gap: 4px;
       align-items: center;
+      svg {
+        fill: var(--foreground);
+        .fill {
+          display: none;
+        }
+      }
     }
   }
   .delete {
@@ -38,5 +44,15 @@
     top: 8px;
     right: 8px;
     padding: 8px;
+  }
+  &.favorited button.favorites {
+    color: var(--error);
+    font-weight: bold;
+    svg {
+      fill: var(--error);
+      .fill {
+        display: block;
+      }
+    }
   }
 }
