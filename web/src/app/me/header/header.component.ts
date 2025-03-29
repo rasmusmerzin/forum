@@ -4,6 +4,7 @@ import { AccountService } from "../../account/account.service";
 import { Router, RouterLink } from "@angular/router";
 import { SpinnerComponent } from "../../spinner/spinner.component";
 import { AuthenticationService } from "../../authentication/authentication.service";
+import { Account } from "../../account/account";
 
 @Component({
   selector: "app-me-header",
@@ -12,10 +13,6 @@ import { AuthenticationService } from "../../authentication/authentication.servi
   styleUrl: "./header.component.scss",
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  username = "";
-  fullname = "";
-  bio = "";
-
   router = inject(Router);
   authenticationService = inject(AuthenticationService);
   accountService = inject(AccountService);
@@ -24,6 +21,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   loading = false;
   control = new AbortController();
   colorHeight = 120;
+  username = "";
+  account?: Account;
+
+  get fullName(): string {
+    return `${this.account?.firstName || ""} ${this.account?.lastName || ""}`;
+  }
+  get bio(): string {
+    return this.account?.bio || "";
+  }
+  get email(): string {
+    return this.account?.email || "";
+  }
 
   ngOnInit() {
     this.activateBar();
@@ -50,9 +59,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (!this.username) return;
     try {
       this.loading = true;
-      const account = await this.accountService.fetchAccount(this.username);
-      this.fullname = `${account.firstName} ${account.lastName}`;
-      this.bio = account.bio;
+      this.account = await this.accountService.fetchAccount(this.username);
     } catch (error: any) {
       console.error(error);
     } finally {
