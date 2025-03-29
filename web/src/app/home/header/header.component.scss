@@ -15,11 +15,7 @@
     max-width: 100%;
     display: flex;
     justify-content: center;
-    &.title {
-      align-items: center;
-      font-weight: 900;
-      font-size: 20px;
-      height: 48px;
-    }
+    align-items: center;
+    height: 48px;
   }
 }

@@ -2,11 +2,16 @@
   "name": "Merzin Forum",
   "short_name": "Forum",
   "description": "Simple forum application",
-  "background_color": "#fff",
-  "theme_color": "#fff",
+  "background_color": "#08f",
+  "theme_color": "#08f",
   "scope": "/",
   "start_url": "/",
   "android_package_name": "dev.merzin.forum",
   "display": "standalone",
-  "lang": "en"
+  "lang": "en",
+  "icons": [
+    { "src": "/icon.svg", "type": "image/svg", "sizes": "128x128" },
+    { "src": "/icon192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/icon512.png", "type": "image/png", "sizes": "512x512" }
+  ]
 }
