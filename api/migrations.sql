@@ -10,6 +10,10 @@ create table if not exists account (
 	"created" timestamptz not null default now()
 );
 
+create unique index if not exists account_verified_email_index
+on account(email)
+where email_verified;
+
 create table if not exists post (
 	"id" uuid primary key default gen_random_uuid(),
 	"author_id" uuid not null references account(id),

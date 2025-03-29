@@ -15,6 +15,7 @@
   } @else {
     <textarea
       #textarea
+      spellcheck="false"
       placeholder="Write a comment..."
       [(ngModel)]="content"
       (input)="resizeTextarea()"

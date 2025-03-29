@@ -10,6 +10,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface CommentRepository extends JpaRepository<Comment, UUID> {
 	public Optional<Comment> findById(UUID id);
 
+	public void deleteByPostId(UUID postId);
+
 	public List<Comment> findTop10ByPostIdOrderByCreatedAsc(UUID postId);
 
 	public List<Comment> findTop10ByPostIdAndCreatedAfterOrderByCreatedAsc(UUID postId, ZonedDateTime after);

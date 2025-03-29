@@ -8,11 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dev.merzin.forum.account.AccountService;
+import dev.merzin.forum.comment.CommentRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class PostService {
 	@Autowired
 	private PostRepository postRepository;
+	@Autowired
+	private CommentRepository commentRepository;
 	@Autowired
 	private AccountService accountService;
 
@@ -22,10 +26,13 @@ public class PostService {
 		return postRepository.save(post);
 	}
 
+	@Transactional
 	public void deletePost(UUID id, String username) {
 		var post = postRepository.findById(id).orElse(null);
 		if (post == null) return;
 		if (!post.getAuthor().getUsername().equals(username)) return;
+		commentRepository.deleteByPostId(id);
+		commentRepository.flush();
 		postRepository.delete(post);
 	}
 

@@ -32,7 +32,7 @@ public class Account implements UserDetails {
 
 	public Account(AccountRegistration registration) {
 		this.id = UUID.randomUUID();
-		this.username = registration.username().replaceAll("\\s", "").toLowerCase();
+		this.username = UsernameSanitizer.sanitize(registration.username());
 		this.password = passwordEncoder().encode(registration.password());
 		this.created = ZonedDateTime.now();
 	}
@@ -41,9 +41,12 @@ public class Account implements UserDetails {
 		if (update.firstName() != null) firstName = update.firstName();
 		if (update.lastName() != null) lastName = update.lastName();
 		if (update.bio() != null) bio = update.bio();
-		if (update.email() != null && update.email() != email) {
-			email = update.email();
-			emailVerified = false;
+		if (update.email() != null) {
+			var updatedEmail = update.email().toLowerCase();
+			if (!email.equals(updatedEmail) && EmailValidator.isValid(updatedEmail)) {
+				email = updatedEmail;
+				emailVerified = false;
+			}
 		}
 	}
 
