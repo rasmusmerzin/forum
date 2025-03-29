@@ -1,9 +1,13 @@
 <app-post-header [post]="post" />
 
+@if (post) {
+  <app-post-card [post]="post" />
+}
+
 @if (loading) {
   <div class="loading">
     <app-spinner />
   </div>
-} @else if (post) {
-  <app-post-card [post]="post" />
 }
+
+<app-comment-bar />

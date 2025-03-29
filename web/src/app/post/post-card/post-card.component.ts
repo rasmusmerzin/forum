@@ -44,4 +44,12 @@ export class PostCardComponent implements OnChanges {
   get content(): string {
     return this.post.content || "";
   }
+
+  get favorites(): number {
+    return this.post.favorites || 0;
+  }
+
+  get comments(): number {
+    return this.post.comments || 0;
+  }
 }

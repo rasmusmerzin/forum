@@ -1,0 +1,23 @@
+<app-post-comment-header
+  [loading]="loading"
+  [(preview)]="preview"
+  (commentClickEvent)="createComment()"
+  (previewClickEvent)="togglePreview()"
+/>
+
+<main>
+  <div class="replying">
+    <span>Replying to </span>
+    <b>{{ "@" + (post?.username || "") }}</b>
+  </div>
+  @if (preview) {
+    <app-comment-card [comment]="comment" />
+  } @else {
+    <textarea
+      #textarea
+      placeholder="Write a comment..."
+      [(ngModel)]="content"
+      (input)="resizeTextarea()"
+    ></textarea>
+  }
+</main>

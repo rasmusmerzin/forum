@@ -3,4 +3,6 @@ export interface Post {
   content: string;
   created: string;
   username: string;
+  comments: number;
+  favorites: number;
 }

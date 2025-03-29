@@ -1,0 +1,33 @@
+<div>
+  <button class="button-icon" (click)="onBackClick()">
+    <svg height="24px" viewBox="0 -960 960 960" width="24px">
+      <path
+        d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"
+      />
+    </svg>
+  </button>
+  <div class="actions">
+    <button
+      class="button-basic-sm preview"
+      [class.active]="preview()"
+      (click)="previewClickEvent.emit()"
+    >
+      @if (preview()) {
+        Edit
+      } @else {
+        Preview
+      }
+    </button>
+    <button class="button-basic-sm comment" (click)="commentClickEvent.emit()">
+      Comment
+      @if (loading) {
+        <app-spinner
+          [fill]="true"
+          [size]="16"
+          color="#fff"
+          background="var(--primary)"
+        />
+      }
+    </button>
+  </div>
+</div>

@@ -5,10 +5,16 @@ import { PostService } from "./post.service";
 import { SpinnerComponent } from "../spinner/spinner.component";
 import { HeaderComponent } from "./header/header.component";
 import { PostCardComponent } from "./post-card/post-card.component";
+import { CommentBarComponent } from "./comment-bar/comment-bar.component";
 
 @Component({
   selector: "app-post",
-  imports: [SpinnerComponent, HeaderComponent, PostCardComponent],
+  imports: [
+    SpinnerComponent,
+    HeaderComponent,
+    PostCardComponent,
+    CommentBarComponent,
+  ],
   templateUrl: "./post.component.html",
   styleUrl: "./post.component.scss",
 })

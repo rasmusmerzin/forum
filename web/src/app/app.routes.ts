@@ -4,6 +4,7 @@ import { NewComponent } from "./new/new.component";
 import { MeComponent } from "./me/me.component";
 import { EditComponent } from "./me/edit/edit.component";
 import { PostComponent } from "./post/post.component";
+import { PostCommentComponent } from "./post/post-comment/post-comment.component";
 
 export const routes: Routes = [
   {
@@ -30,5 +31,9 @@ export const routes: Routes = [
   {
     path: "post/:id",
     component: PostComponent,
+  },
+  {
+    path: "post/:id/comment",
+    component: PostCommentComponent,
   },
 ];

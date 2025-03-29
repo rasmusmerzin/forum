@@ -7,8 +7,10 @@
     max-width: 100%;
     height: calc(100dvh - 48px);
     overflow: auto;
-    div {
-      padding: 16px;
+    .replying {
+      padding: 0 16px;
+      height: 32px;
+      line-height: 32px;
     }
     textarea {
       width: 100%;
