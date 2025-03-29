@@ -1,5 +1,7 @@
-import { Component, Input } from "@angular/core";
+import { Component, inject, Input } from "@angular/core";
 import { Comment } from "../comment";
+import { CommentService } from "../comment.service";
+import { AuthenticationService } from "../../authentication/authentication.service";
 
 @Component({
   selector: "app-comment-card",
@@ -8,6 +10,10 @@ import { Comment } from "../comment";
   styleUrl: "./comment-card.component.scss",
 })
 export class CommentCardComponent {
+  commentService = inject(CommentService);
+  authorizationService = inject(AuthenticationService);
+
+  userUsername = this.authorizationService.getUsername();
   @Input()
   comment: Partial<Comment> = {};
 
@@ -21,5 +27,12 @@ export class CommentCardComponent {
 
   get favorites(): number {
     return this.comment.favorites || 0;
+  }
+
+  async deleteComment(): Promise<void> {
+    if (!this.comment.id || this.userUsername !== this.username) return;
+    if (!confirm("Are you sure you want to delete this comment?")) return;
+    await this.commentService.deleteComment(this.comment.id);
+    location.reload();
   }
 }
