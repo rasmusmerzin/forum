@@ -4,6 +4,7 @@ import { SpinnerComponent } from "../../spinner/spinner.component";
 import { AuthenticationService } from "../../authentication/authentication.service";
 import { PostService } from "../../post/post.service";
 import { Post } from "../../post/post";
+import { HintService } from "../../hint/hint.service";
 
 @Component({
   selector: "app-home-latest-posts",
@@ -14,13 +15,18 @@ import { Post } from "../../post/post";
 export class LatestPostsComponent {
   authenticationService = inject(AuthenticationService);
   postService = inject(PostService);
+  hintService = inject(HintService);
 
   posts?: Post[];
   loading = true;
   before = "";
 
-  ngOnInit() {
-    this.loadMorePosts();
+  async ngOnInit() {
+    const timeout = setTimeout(() => {
+      this.hintService.showHint("Starting server", 5000);
+    }, 2000);
+    await this.loadMorePosts();
+    clearTimeout(timeout);
   }
 
   async loadMorePosts() {
