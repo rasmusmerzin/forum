@@ -23,8 +23,8 @@ export class LatestPostsComponent {
 
   async ngOnInit() {
     const timeout = setTimeout(() => {
-      this.hintService.showHint("Starting server", 5000);
-    }, 2000);
+      this.hintService.showHint("Starting server", 3000);
+    }, 3000);
     await this.loadMorePosts();
     clearTimeout(timeout);
   }
