@@ -23,6 +23,9 @@ create table if not exists post (
 	"created" timestamptz not null default now()
 );
 
+create index if not exists post_created_index
+on post(created);
+
 create table if not exists comment (
 	"id" uuid primary key default gen_random_uuid(),
 	"post_id" uuid not null references post(id),
@@ -31,6 +34,9 @@ create table if not exists comment (
 	"favorites" int not null default 0,
 	"created" timestamptz not null default now()
 );
+
+create index if not exists comment_created_index
+on comment(created);
 
 create or replace function update_post_comment_count()
 returns trigger as $$
