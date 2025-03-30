@@ -4,6 +4,8 @@
 
 A simple forum application built with Java Spring Boot and Angular.
 
+Frontend is hosted at [forum.merzin.dev](https://forum.merzin.dev).
+
 ## Running locally
 
 To run the application locally, you need to have Java 21 and Node.js with npm
