@@ -8,6 +8,7 @@ import {
 import { FormsModule } from "@angular/forms";
 import { AccountService } from "../../account/account.service";
 import { SpinnerComponent } from "../../spinner/spinner.component";
+import { HintService } from "../../hint/hint.service";
 
 @Component({
   selector: "app-register",
@@ -20,6 +21,7 @@ export class RegisterComponent {
   loginClickEvent = new EventEmitter<void>();
 
   accountService = inject(AccountService);
+  hintService = inject(HintService);
 
   username = "";
   password = "";
@@ -52,8 +54,8 @@ export class RegisterComponent {
     try {
       this.loading = true;
       await this.accountService.register(this.username, this.password);
-      // TODO: toast
       this.loginClickEvent.emit();
+      this.hintService.showHint("Account created successfully", 4000);
     } catch (error: any) {
       this.error = error.message || "Unknown error";
     } finally {
@@ -80,9 +82,5 @@ export class RegisterComponent {
       return false;
     }
     return true;
-  }
-
-  unimplemented() {
-    alert("Unimplemented");
   }
 }

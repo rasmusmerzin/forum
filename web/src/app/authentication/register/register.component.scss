@@ -45,7 +45,7 @@
     margin: 16px 0;
   }
   p {
-    margin: 0 0 16px;
+    margin: 0;
     text-align: center;
   }
   .error {
@@ -71,39 +71,10 @@
   }
   button.main {
     width: 100%;
-    margin: 32px 0 0;
-  }
-  .divider {
-    width: 100%;
-    margin: 24px 0 28px;
-    border-top: 1px solid #8884;
-    position: relative;
-    span {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: var(--background);
-      padding: 0 16px;
-      font-size: 14px;
-    }
-  }
-  .openid {
-    display: flex;
-    grid-gap: 8px;
-    width: 100%;
-    button {
-      flex: 1;
-      padding: 8px;
-      border: none;
-      background: var(--background);
-      fill: var(--foreground);
-      border-radius: 8px;
-      box-shadow: 0 0 8px #8884;
-    }
+    margin: 24px 0 0;
   }
   .login {
-    margin: 16px 0 0;
+    margin: 24px 0 0;
     font-size: 14px;
   }
 }
