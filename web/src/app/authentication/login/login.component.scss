@@ -56,17 +56,33 @@
   .input {
     position: relative;
     margin: 12px 0 0;
+    width: 100%;
     svg {
+      fill: #888;
+    }
+    > svg {
       position: absolute;
       left: 8px;
       top: 50%;
       transform: translateY(-50%);
-      fill: #888;
     }
-    width: 100%;
+    button {
+      width: 20px;
+      height: 20px;
+      box-sizing: content-box;
+      padding: 8px;
+      margin: 0 -8px;
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
     input {
       width: 100%;
       padding: 8px 8px 8px 32px;
+    }
+    &:has(button) input {
+      padding: 8px 32px;
     }
   }
   .memory {

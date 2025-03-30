@@ -28,6 +28,8 @@ export class RegisterComponent {
   password2 = "";
   loading = false;
   error = "";
+  passwordVisible = false;
+  password2Visible = false;
 
   @HostListener("click", ["$event"])
   onHostClick(event: MouseEvent) {

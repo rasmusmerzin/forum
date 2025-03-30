@@ -32,6 +32,7 @@ export class LoginComponent {
   rememberMe = false;
   loading = false;
   error = "";
+  passwordVisible = false;
 
   @HostListener("click", ["$event"])
   onHostClick(event: MouseEvent) {
