@@ -2,6 +2,7 @@ import { Component, inject, Input } from "@angular/core";
 import { PostService } from "../post.service";
 import { Post } from "../post";
 import { AuthenticationService } from "../../authentication/authentication.service";
+import { HintService } from "../../hint/hint.service";
 
 @Component({
   selector: "app-post-header",
@@ -10,6 +11,7 @@ import { AuthenticationService } from "../../authentication/authentication.servi
   styleUrl: "./header.component.scss",
 })
 export class HeaderComponent {
+  hintService = inject(HintService);
   postService = inject(PostService);
   authenticationService = inject(AuthenticationService);
 
@@ -27,5 +29,6 @@ export class HeaderComponent {
     const { id } = this.post;
     await this.postService.deletePost(id);
     history.back();
+    this.hintService.showHint("Post deleted", 3000);
   }
 }

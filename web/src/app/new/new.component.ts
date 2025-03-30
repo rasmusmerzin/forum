@@ -14,6 +14,7 @@ import { Router } from "@angular/router";
 import { PostCardComponent } from "../post/post-card/post-card.component";
 import { Post } from "../post/post";
 import { DraftService } from "../draft/draft.service";
+import { HintService } from "../hint/hint.service";
 
 const { virtualKeyboard } = navigator as any;
 
@@ -24,6 +25,7 @@ const { virtualKeyboard } = navigator as any;
   styleUrl: "./new.component.scss",
 })
 export class NewComponent implements AfterViewInit, OnDestroy {
+  hintService = inject(HintService);
   draftService = inject(DraftService);
   authenticationService = inject(AuthenticationService);
   postService = inject(PostService);
@@ -60,6 +62,7 @@ export class NewComponent implements AfterViewInit, OnDestroy {
       const { id } = await this.postService.createPost(this.content);
       this.draftService.clearContent();
       this.router.navigate(["/post", id], { replaceUrl: true });
+      this.hintService.showHint("Post created", 4000);
     } catch (error: any) {
       console.error(error);
     } finally {

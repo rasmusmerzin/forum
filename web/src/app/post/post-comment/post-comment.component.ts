@@ -16,6 +16,7 @@ import { AuthenticationService } from "../../authentication/authentication.servi
 import { Comment } from "../../comment/comment";
 import { CommentCardComponent } from "../../comment/comment-card/comment-card.component";
 import { CommentService } from "../../comment/comment.service";
+import { HintService } from "../../hint/hint.service";
 
 const { virtualKeyboard } = navigator as any;
 
@@ -30,6 +31,7 @@ export class PostCommentComponent implements OnInit, AfterViewInit, OnDestroy {
   authenticationService = inject(AuthenticationService);
   postService = inject(PostService);
   commentService = inject(CommentService);
+  hintService = inject(HintService);
 
   @ViewChild("textarea")
   textarea?: ElementRef<HTMLElement | null>;
@@ -63,6 +65,7 @@ export class PostCommentComponent implements OnInit, AfterViewInit, OnDestroy {
       this.loading = true;
       await this.commentService.createComment(id, this.content);
       history.back();
+      this.hintService.showHint("Comment created", 3000);
     } catch (error) {
       console.error(error);
     } finally {

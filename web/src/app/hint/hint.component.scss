@@ -1,0 +1,51 @@
+:host {
+  .hint {
+    z-index: 200;
+    padding: 6px 12px 6px 6px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    grid-gap: 6px;
+    max-width: calc(100% - 32px);
+    background: #222;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 16px;
+    position: fixed;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+    animation: hint-appear 1s backwards;
+    svg {
+      flex-shrink: 0;
+      fill: #fff;
+    }
+  }
+  &.removed .hint {
+    animation: 1s hint-disappear forwards;
+  }
+}
+
+@keyframes hint-appear {
+  0% {
+    opacity: 0;
+    max-width: 32px;
+  }
+  50% {
+    opacity: 1;
+    max-width: 32px;
+  }
+}
+
+@keyframes hint-disappear {
+  50% {
+    opacity: 1;
+    max-width: 32px;
+  }
+  100% {
+    opacity: 0;
+    max-width: 32px;
+  }
+}

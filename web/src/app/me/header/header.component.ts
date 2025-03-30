@@ -5,6 +5,7 @@ import { Router, RouterLink } from "@angular/router";
 import { SpinnerComponent } from "../../spinner/spinner.component";
 import { AuthenticationService } from "../../authentication/authentication.service";
 import { Account } from "../../account/account";
+import { HintService } from "../../hint/hint.service";
 
 @Component({
   selector: "app-me-header",
@@ -17,6 +18,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   authenticationService = inject(AuthenticationService);
   accountService = inject(AccountService);
   themeService = inject(ThemeService);
+  hintService = inject(HintService);
+
   themeSymbol?: symbol;
   loading = false;
   control = new AbortController();
@@ -52,6 +55,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (!confirm("Are you sure you want to log out?")) return;
     this.authenticationService.logout();
     this.router.navigate(["/home"], { replaceUrl: true });
+    setTimeout(() => this.hintService.showHint("Logged out", 3000));
   }
 
   async loadProfile() {
