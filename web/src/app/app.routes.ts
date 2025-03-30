@@ -6,6 +6,7 @@ import { EditComponent } from "./me/edit/edit.component";
 import { PostComponent } from "./post/post.component";
 import { PostCommentComponent } from "./post/post-comment/post-comment.component";
 import { UserComponent } from "./user/user.component";
+import { BlankComponent } from "./blank/blank.component";
 
 export const routes: Routes = [
   {
@@ -40,5 +41,9 @@ export const routes: Routes = [
   {
     path: "user/:username",
     component: UserComponent,
+  },
+  {
+    path: "blank",
+    component: BlankComponent,
   },
 ];

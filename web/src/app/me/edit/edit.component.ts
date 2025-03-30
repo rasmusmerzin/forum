@@ -5,6 +5,7 @@ import { AuthenticationService } from "../../authentication/authentication.servi
 import { FormsModule } from "@angular/forms";
 import { SpinnerComponent } from "../../spinner/spinner.component";
 import { AccountUpdate } from "../../account/account";
+import { HintService } from "../../hint/hint.service";
 
 @Component({
   selector: "app-edit",
@@ -15,6 +16,7 @@ import { AccountUpdate } from "../../account/account";
 export class EditComponent implements OnInit {
   accountService = inject(AccountService);
   authenticationService = inject(AuthenticationService);
+  hintService = inject(HintService);
 
   username = "";
   firstName = "";
@@ -53,6 +55,7 @@ export class EditComponent implements OnInit {
       };
       await this.accountService.update(update);
       history.back();
+      this.hintService.showHint("Profile updated", 3000);
     } catch (error: any) {
       console.error(error);
     } finally {

@@ -4,6 +4,8 @@ import { CommentService } from "../comment.service";
 import { AuthenticationService } from "../../authentication/authentication.service";
 import { Router, RouterLink } from "@angular/router";
 import { FavoriteService } from "../../favorite/favorite.service";
+import { BlankService } from "../../blank/blank.service";
+import { HintService } from "../../hint/hint.service";
 
 @Component({
   selector: "app-comment-card",
@@ -16,6 +18,8 @@ export class CommentCardComponent {
   commentService = inject(CommentService);
   authenticationService = inject(AuthenticationService);
   favoriteService = inject(FavoriteService);
+  blankService = inject(BlankService);
+  hintService = inject(HintService);
 
   userUsername = this.authenticationService.getUsername();
   @Input()
@@ -41,7 +45,8 @@ export class CommentCardComponent {
     if (!this.comment.id || this.userUsername !== this.username) return;
     if (!confirm("Are you sure you want to delete this comment?")) return;
     await this.commentService.deleteComment(this.comment.id);
-    location.reload();
+    await this.blankService.refresh();
+    this.hintService.showHint("Comment deleted", 3000);
   }
 
   onFavoriteClick(event: MouseEvent) {
