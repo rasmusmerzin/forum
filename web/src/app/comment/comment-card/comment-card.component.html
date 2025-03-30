@@ -1,4 +1,7 @@
-<a class="username" [routerLink]="'/user/' + username">&#64;{{ username }}</a>
+<div class="header">
+  <a class="username" [routerLink]="'/user/' + username">&#64;{{ username }}</a>
+  <span class="created" title="{{ created }}">{{ createdAgo }}</span>
+</div>
 <div class="content">{{ content }}</div>
 <div class="stats">
   <button class="favorites" (click)="onFavoriteClick($event)">

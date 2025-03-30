@@ -6,6 +6,7 @@ import { Router, RouterLink } from "@angular/router";
 import { FavoriteService } from "../../favorite/favorite.service";
 import { BlankService } from "../../blank/blank.service";
 import { HintService } from "../../hint/hint.service";
+import { formatDateAgo } from "../../date";
 
 @Component({
   selector: "app-comment-card",
@@ -39,6 +40,16 @@ export class CommentCardComponent {
 
   get favorites(): number {
     return this.comment.favorites || 0;
+  }
+
+  get createdAgo(): string {
+    return this.comment.created ? formatDateAgo(this.comment.created) : "";
+  }
+
+  get created(): string {
+    return this.comment.created
+      ? new Date(this.comment.created).toLocaleString()
+      : "";
   }
 
   async deleteComment(): Promise<void> {
