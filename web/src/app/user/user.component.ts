@@ -1,15 +1,12 @@
-import { Component, inject } from "@angular/core";
+import { Component } from "@angular/core";
 import { HeaderComponent } from "./header/header.component";
-import { ActivatedRoute } from "@angular/router";
 import { HeaderCardComponent } from "./header-card/header-card.component";
+import { PostsComponent } from "./posts/posts.component";
 
 @Component({
   selector: "app-user",
-  imports: [HeaderComponent, HeaderCardComponent],
+  imports: [HeaderComponent, HeaderCardComponent, PostsComponent],
   templateUrl: "./user.component.html",
   styleUrl: "./user.component.scss",
 })
-export class UserComponent {
-  route = inject(ActivatedRoute);
-  username = this.route.snapshot.params["username"];
-}
+export class UserComponent {}
