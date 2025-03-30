@@ -38,6 +38,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.control.abort();
   }
 
+  reload() {
+    location.reload();
+  }
+
   onScroll() {
     if (Math.abs(scrollY - this.scrollY) < 4) return;
     if (scrollY < this.scrollY) {
