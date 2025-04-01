@@ -49,9 +49,15 @@ export class RegisterComponent {
     if (!this.validate()) return;
     try {
       this.loading = true;
-      await this.accountService.register(this.username, this.password);
-      this.loginClickEvent.emit();
-      this.hintService.showHint("Account created successfully", 4000);
+      const account = await this.accountService
+        .fetchAccount(this.username)
+        .catch(() => null);
+      if (account) this.error = "Username already exists";
+      else {
+        await this.accountService.register(this.username, this.password);
+        this.loginClickEvent.emit();
+        this.hintService.showHint("Account created successfully", 4000);
+      }
     } catch (error: any) {
       this.error = error.message || "Unknown error";
     } finally {
