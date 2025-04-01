@@ -1,4 +1,4 @@
-package dev.merzin.forum.account;
+package dev.merzin.forum.email;
 
 import java.util.regex.Pattern;
 

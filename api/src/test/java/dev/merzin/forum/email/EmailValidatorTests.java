@@ -1,4 +1,4 @@
-package dev.merzin.forum.account;
+package dev.merzin.forum.email;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

@@ -10,6 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import dev.merzin.forum.email.EmailValidator;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Getter;
