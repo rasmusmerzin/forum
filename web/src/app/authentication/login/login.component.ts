@@ -11,6 +11,7 @@ import { AccountService } from "../../account/account.service";
 import { AuthenticationService } from "../authentication.service";
 import { BlankService } from "../../blank/blank.service";
 import { HintService } from "../../hint/hint.service";
+import { sanitizeUsername } from "../../username";
 
 @Component({
   selector: "app-login",
@@ -40,14 +41,7 @@ export class LoginComponent {
   }
 
   onUsernameInput() {
-    setTimeout(
-      () =>
-        (this.username = this.username
-          .split("")
-          .filter((c) => /[A-Za-z0-9_]/.test(c))
-          .join("")
-          .toLowerCase()),
-    );
+    setTimeout(() => (this.username = sanitizeUsername(this.username)));
   }
 
   close() {

@@ -9,6 +9,7 @@ import { FormsModule } from "@angular/forms";
 import { AccountService } from "../../account/account.service";
 import { SpinnerComponent } from "../../spinner/spinner.component";
 import { HintService } from "../../hint/hint.service";
+import { sanitizeUsername } from "../../username";
 
 @Component({
   selector: "app-register",
@@ -37,14 +38,7 @@ export class RegisterComponent {
   }
 
   onUsernameInput() {
-    setTimeout(
-      () =>
-        (this.username = this.username
-          .split("")
-          .filter((c) => /[A-Za-z0-9_]/.test(c))
-          .join("")
-          .toLowerCase()),
-    );
+    setTimeout(() => (this.username = sanitizeUsername(this.username)));
   }
 
   close() {
