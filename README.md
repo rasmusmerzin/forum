@@ -36,3 +36,23 @@ npm install
 ```bash
 npm start
 ```
+
+## Running tests
+
+### Backend
+
+1. Open the `api` directory in your terminal.
+2. Run the following command to run the tests:
+
+```bash
+./gradlew test
+```
+
+### Frontend
+
+1. Open the `web` directory in your terminal.
+2. Run the following command to run the tests:
+
+```bash
+npm test
+```
