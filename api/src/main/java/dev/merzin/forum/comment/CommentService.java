@@ -37,7 +37,7 @@ public class CommentService {
 	}
 
 	public List<Comment> getPostComments(UUID postId, ZonedDateTime after) {
-		if (after == null) return commentRepository.findTop10ByPostIdOrderByCreatedAsc(postId);
-		return commentRepository.findTop10ByPostIdAndCreatedAfterOrderByCreatedAsc(postId, after);
+		if (after == null) return commentRepository.findTop10ByPostId(postId);
+		return commentRepository.findTop10ByPostIdAndCreatedAfter(postId, after);
 	}
 }

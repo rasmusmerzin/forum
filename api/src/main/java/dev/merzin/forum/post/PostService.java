@@ -53,11 +53,11 @@ public class PostService {
 
 	public List<Post> getNewPosts(ZonedDateTime before) {
 		if (before == null) before = ZonedDateTime.now();
-		return postRepository.findTop10ByCreatedBeforeOrderByCreatedDesc(before);
+		return postRepository.findTop10ByCreatedBefore(before);
 	}
 
 	public List<Post> getMyPosts(String username, ZonedDateTime before) {
 		if (before == null) before = ZonedDateTime.now();
-		return postRepository.findTop10ByAuthorUsernameAndCreatedBeforeOrderByCreatedDesc(username, before);
+		return postRepository.findTop10ByAuthorUsernameAndCreatedBefore(username, before);
 	}
 }
