@@ -44,7 +44,8 @@ public class Account implements UserDetails {
 		if (update.bio() != null) bio = update.bio();
 		if (update.email() != null) {
 			var updatedEmail = update.email().toLowerCase();
-			if (!email.equals(updatedEmail) && EmailValidator.isValid(updatedEmail)) {
+			var isValidOrEmpty = EmailValidator.isValid(updatedEmail) || updatedEmail.isEmpty();
+			if (!email.equals(updatedEmail) && isValidOrEmpty) {
 				email = updatedEmail;
 				emailVerified = false;
 			}
