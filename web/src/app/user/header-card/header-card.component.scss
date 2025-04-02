@@ -24,6 +24,10 @@
       text-decoration: none;
       padding: 8px;
       margin: -8px;
+      svg {
+        transform: translateY(1px);
+        fill: var(--info);
+      }
     }
     .fullname {
       font-weight: 900;

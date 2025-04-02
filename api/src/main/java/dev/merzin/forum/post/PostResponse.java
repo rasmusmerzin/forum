@@ -10,6 +10,7 @@ import lombok.Setter;
 public class PostResponse {
 	private UUID id;
 	private String username;
+	private boolean verified;
 	private String content;
 	private ZonedDateTime created;
 	private int comments;
@@ -20,6 +21,7 @@ public class PostResponse {
 	public PostResponse(Post post) {
 		this.id = post.getId();
 		this.username = post.getAuthor().getUsername();
+		this.verified = post.getAuthor().isEmailVerified();
 		this.content = post.getContent();
 		this.created = post.getCreated();
 		this.comments = post.getComments();

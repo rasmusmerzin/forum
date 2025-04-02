@@ -26,6 +26,9 @@ export class HeaderCardComponent implements OnInit {
   get email(): string {
     return this.account?.email || "";
   }
+  get emailVerified(): boolean {
+    return this.account?.emailVerified || false;
+  }
 
   ngOnInit() {
     this.loadProfile();

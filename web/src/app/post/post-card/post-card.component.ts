@@ -4,7 +4,6 @@ import {
   HostListener,
   inject,
   Input,
-  SimpleChanges,
 } from "@angular/core";
 import { Post } from "../post";
 import { Router, RouterLink } from "@angular/router";
@@ -39,27 +38,24 @@ export class PostCardComponent {
   get favorited() {
     return this.post.favorited;
   }
-
   get username(): string {
     return this.post.username || "";
   }
-
+  get verified(): boolean {
+    return this.post.verified || false;
+  }
   get content(): string {
     return this.post.content || "";
   }
-
   get favorites(): number {
     return this.post.favorites || 0;
   }
-
   get comments(): number {
     return this.post.comments || 0;
   }
-
   get createdAgo(): string {
     return this.post.created ? formatDateAgo(this.post.created) : "";
   }
-
   get created(): string {
     return this.post.created
       ? new Date(this.post.created).toLocaleString()

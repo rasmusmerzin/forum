@@ -29,23 +29,21 @@ export class CommentCardComponent {
   get favorited() {
     return this.comment.favorited;
   }
-
   get username(): string {
     return this.comment.username || "";
   }
-
+  get verified(): boolean {
+    return this.comment.verified || false;
+  }
   get content(): string {
     return this.comment.content || "";
   }
-
   get favorites(): number {
     return this.comment.favorites || 0;
   }
-
   get createdAgo(): string {
     return this.comment.created ? formatDateAgo(this.comment.created) : "";
   }
-
   get created(): string {
     return this.comment.created
       ? new Date(this.comment.created).toLocaleString()

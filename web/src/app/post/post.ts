@@ -3,6 +3,7 @@ export interface Post {
   content: string;
   created: string;
   username: string;
+  verified: boolean;
   comments: number;
   favorites: number;
   favorited: boolean;
