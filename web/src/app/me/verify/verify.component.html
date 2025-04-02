@@ -1,0 +1,31 @@
+<app-me-verify-header />
+
+<main>
+  <h1>Verify your email</h1>
+  <p>
+    We will send you an email with a verification link to address
+    <b>{{ email }}</b
+    >.
+  </p>
+  <p>Click on the link to verify your email.</p>
+  <p>
+    If you don't receive the email within a few minutes,
+    <b>check your spam folder</b>.
+  </p>
+  <div>
+    <button class="button-basic" (click)="sendEmail()" [disabled]="loading">
+      Send email
+      @if (loading) {
+        <app-spinner
+          [fill]="true"
+          [size]="16"
+          color="var(--primary-foreground)"
+          background="var(--primary)"
+        />
+      }
+    </button>
+    @if (countdownSeconds) {
+      <span>{{ countdownSeconds }}s</span>
+    }
+  </div>
+</main>

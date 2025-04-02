@@ -7,8 +7,8 @@ import { AuthenticationService } from "../authentication/authentication.service"
   providedIn: "root",
 })
 export class AccountService {
-  url = new URL("/account/", API_URL);
-  authenticationService = inject(AuthenticationService);
+  private url = new URL("/account/", API_URL);
+  private authenticationService = inject(AuthenticationService);
 
   async update(update: AccountUpdate): Promise<void> {
     const url = new URL("/account", this.url);

@@ -7,6 +7,8 @@ import { PostComponent } from "./post/post.component";
 import { PostCommentComponent } from "./post/post-comment/post-comment.component";
 import { UserComponent } from "./user/user.component";
 import { BlankComponent } from "./blank/blank.component";
+import { VerifyComponent as MeVerifyComponent } from "./me/verify/verify.component";
+import { VerifyComponent } from "./verify/verify.component";
 
 export const routes: Routes = [
   {
@@ -29,6 +31,14 @@ export const routes: Routes = [
   {
     path: "me/edit",
     component: EditComponent,
+  },
+  {
+    path: "me/verify",
+    component: MeVerifyComponent,
+  },
+  {
+    path: "verify/:id",
+    component: VerifyComponent,
   },
   {
     path: "post/:id",

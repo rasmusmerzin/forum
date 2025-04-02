@@ -36,6 +36,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   get email(): string {
     return this.account?.email || "";
   }
+  get emailVerified(): boolean {
+    return this.account?.emailVerified || false;
+  }
 
   ngOnInit() {
     this.activateBar();
@@ -87,5 +90,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (!this.themeSymbol) return;
     this.themeService.unregisterBarColor(this.themeSymbol!);
     this.themeSymbol = undefined;
+  }
+
+  unimplemented() {
+    alert("Unimplemented");
   }
 }

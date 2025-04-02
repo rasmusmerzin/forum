@@ -6,22 +6,22 @@ import java.util.UUID;
 import dev.merzin.forum.account.Account;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@NoArgsConstructor
 public class Post {
 	@Id
 	private UUID id;
-	@OneToOne
+	@ManyToOne
 	private Account author;
 	private String content;
 	private ZonedDateTime created;
 	private int comments;
 	private int favorites;
-
-	public Post() {}
 
 	public Post(PostCreation postCreation, Account author) {
 		this.id = UUID.randomUUID();

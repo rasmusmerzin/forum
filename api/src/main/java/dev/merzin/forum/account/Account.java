@@ -14,9 +14,11 @@ import dev.merzin.forum.email.EmailValidator;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@NoArgsConstructor
 public class Account implements UserDetails {
 	@Id
 	private UUID id;
@@ -28,8 +30,6 @@ public class Account implements UserDetails {
 	private String email = "";
 	private boolean emailVerified = false;
 	private ZonedDateTime created;
-
-	public Account() {}
 
 	public Account(AccountRegistration registration) {
 		this.id = UUID.randomUUID();
@@ -49,6 +49,11 @@ public class Account implements UserDetails {
 				emailVerified = false;
 			}
 		}
+	}
+
+	public void verifyEmail(String email) {
+		if (this.email.equals(email)) emailVerified = true;
+		else throw new IllegalArgumentException("Email does not match");
 	}
 
 	@Bean

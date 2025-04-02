@@ -7,8 +7,8 @@ import { Comment } from "./comment";
   providedIn: "root",
 })
 export class CommentService {
-  url = new URL("/comment/", API_URL);
-  authenticationService = inject(AuthenticationService);
+  private url = new URL("/comment/", API_URL);
+  private authenticationService = inject(AuthenticationService);
 
   async createComment(postId: string, content: string): Promise<Comment> {
     const url = new URL("/comment", this.url);

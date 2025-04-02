@@ -7,8 +7,8 @@ import { AuthenticationService } from "../authentication/authentication.service"
   providedIn: "root",
 })
 export class PostService {
-  url = new URL("/post/", API_URL);
-  authenticationService = inject(AuthenticationService);
+  private url = new URL("/post/", API_URL);
+  private authenticationService = inject(AuthenticationService);
 
   async createPost(content: string): Promise<Post> {
     const url = new URL("/post", this.url);

@@ -12,7 +12,7 @@ public interface PostRepository extends JpaRepository<Post, UUID> {
 	@Query("""
 		SELECT p
 		FROM Post p
-		WHERE p.created < ?1
+		WHERE p.created < :before
 		ORDER BY p.created DESC
 		LIMIT 10""")
 	List<Post> findTop10ByCreatedBefore(ZonedDateTime before);
@@ -20,8 +20,8 @@ public interface PostRepository extends JpaRepository<Post, UUID> {
 	@Query("""
 		SELECT p
 		FROM Post p
-		WHERE p.author.username = ?1
-		AND p.created < ?2
+		WHERE p.author.username = :username
+		AND p.created < :before
 		ORDER BY p.created DESC
 		LIMIT 10""")
 	List<Post> findTop10ByAuthorUsernameAndCreatedBefore(String username, ZonedDateTime before);

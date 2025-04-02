@@ -14,6 +14,15 @@ create unique index if not exists account_verified_email_index
 on account(email)
 where email_verified;
 
+create table if not exists email_verification (
+	"id" uuid primary key default gen_random_uuid(),
+	"account_id" uuid not null references account(id),
+	"email" varchar(63) not null default gen_random_uuid(),
+	"created" timestamptz not null default now(),
+	"sent" timestamptz,
+	"confirmed" timestamptz
+);
+
 create table if not exists post (
 	"id" uuid primary key default gen_random_uuid(),
 	"author_id" uuid not null references account(id),

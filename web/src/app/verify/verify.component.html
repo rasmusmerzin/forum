@@ -1,0 +1,13 @@
+<h1>{{ title }}</h1>
+
+@if (error) {
+  <p class="error">{{ error }}</p>
+} @else if (!loading) {
+  <p>Your email has been verified. You can now continue to the app.</p>
+}
+
+@if (loading) {
+  <app-spinner />
+} @else {
+  <button class="button-basic" (click)="continue()">Continue</button>
+}

@@ -6,8 +6,8 @@ import { AuthenticationService } from "../authentication/authentication.service"
   providedIn: "root",
 })
 export class FavoriteService {
-  url = new URL("/favorite/", API_URL);
-  authenticationService = inject(AuthenticationService);
+  private url = new URL("/favorite/", API_URL);
+  private authenticationService = inject(AuthenticationService);
 
   async favoritePost(id: string): Promise<void> {
     const url = new URL(`post/${id}`, this.url);
