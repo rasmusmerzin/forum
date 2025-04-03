@@ -2,9 +2,11 @@
 
 @if (post) {
   <app-post-card [post]="post" />
+} @else if (!loading) {
+  <p>Couldn't find post.</p>
 }
 
-@if (comments) {
+@if (post && comments) {
   @for (comment of comments; track comment.id) {
     <app-comment-card [comment]="comment" />
   } @empty {
@@ -24,4 +26,6 @@
   </div>
 }
 
-<app-comment-bar />
+@if (post) {
+  <app-comment-bar />
+}
