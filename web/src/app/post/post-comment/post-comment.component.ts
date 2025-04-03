@@ -46,6 +46,10 @@ export class PostCommentComponent implements OnInit, AfterViewInit, OnDestroy {
     return {
       username: this.username,
       content: this.content,
+      created: new Date().toISOString(),
+      postId: this.post?.id,
+      opUsername: this.post?.username,
+      opVerified: this.post?.verified,
     };
   }
 

@@ -6,13 +6,13 @@
 />
 
 <main>
-  <div class="replying">
-    <span>Replying to </span>
-    <b>{{ "@" + (post?.username || "") }}</b>
-  </div>
   @if (preview) {
-    <app-comment-card [comment]="comment" />
+    <app-comment-card [comment]="comment" pointerEvents="none" />
   } @else {
+    <div class="replying">
+      <span>Replying to </span>
+      <b>{{ "@" + (post?.username || "") }}</b>
+    </div>
     <textarea
       #textarea
       spellcheck="false"

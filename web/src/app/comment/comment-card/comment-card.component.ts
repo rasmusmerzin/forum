@@ -24,6 +24,9 @@ export class CommentCardComponent {
 
   userUsername = this.authenticationService.getUsername();
   @Input()
+  @HostBinding("style.pointer-events")
+  pointerEvents = "";
+  @Input()
   comment: Partial<Comment> = {};
   @HostBinding("class.favorited")
   get favorited() {
@@ -34,6 +37,15 @@ export class CommentCardComponent {
   }
   get verified(): boolean {
     return this.comment.verified || false;
+  }
+  get postId(): string {
+    return this.comment.postId || "";
+  }
+  get opUsername(): string {
+    return this.comment.opUsername || "";
+  }
+  get opVerified(): boolean {
+    return this.comment.opVerified || false;
   }
   get content(): string {
     return this.comment.content || "";

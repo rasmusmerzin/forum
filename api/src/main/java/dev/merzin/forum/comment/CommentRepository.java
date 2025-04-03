@@ -15,7 +15,7 @@ public interface CommentRepository extends JpaRepository<Comment, UUID> {
 	@Query("""
 		SELECT c
 		FROM Comment c
-		WHERE c.postId = :postId
+		WHERE c.post.id = :postId
 		ORDER BY c.created ASC
 		LIMIT 10""")
 	List<Comment> findTop10ByPostId(UUID postId);
@@ -23,7 +23,7 @@ public interface CommentRepository extends JpaRepository<Comment, UUID> {
 	@Query("""
 		SELECT c
 		FROM Comment c
-		WHERE c.postId = :postId
+		WHERE c.post.id = :postId
 		AND c.created > :after
 		ORDER BY c.created ASC
 		LIMIT 10""")

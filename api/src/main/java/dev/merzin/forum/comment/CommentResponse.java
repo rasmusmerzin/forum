@@ -10,6 +10,8 @@ import lombok.Setter;
 public class CommentResponse {
 	private UUID id;
 	private UUID postId;
+	private String opUsername;
+	private boolean opVerified;
 	private String username;
 	private boolean verified;
 	private String content;
@@ -20,7 +22,9 @@ public class CommentResponse {
 
 	public CommentResponse(Comment comment) {
 		this.id = comment.getId();
-		this.postId = comment.getPostId();
+		this.postId = comment.getPost().getId();
+		this.opUsername = comment.getPost().getAuthor().getUsername();
+		this.opVerified = comment.getPost().getAuthor().isEmailVerified();
 		this.username = comment.getAuthor().getUsername();
 		this.verified = comment.getAuthor().isEmailVerified();
 		this.content = comment.getContent();

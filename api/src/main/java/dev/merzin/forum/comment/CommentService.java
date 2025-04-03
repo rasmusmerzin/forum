@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import dev.merzin.forum.account.AccountService;
 import dev.merzin.forum.favorite.CommentFavoriteRepository;
+import dev.merzin.forum.post.PostService;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -19,10 +20,13 @@ public class CommentService {
 	private CommentFavoriteRepository commentFavoriteRepository;
 	@Autowired
 	private AccountService accountService;
+	@Autowired
+	private PostService postService;
 
 	public Comment createComment(CommentCreation commentCreation, String username) {
 		var account = accountService.getAccountByUsername(username);
-		var comment = new Comment(commentCreation, account);
+		var post = postService.getPost(commentCreation.postId());
+		var comment = new Comment(commentCreation, post, account);
 		return commentRepository.save(comment);
 	}
 
