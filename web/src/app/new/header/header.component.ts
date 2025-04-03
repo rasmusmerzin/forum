@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, model, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { SpinnerComponent } from "../../spinner/spinner.component";
 
 @Component({
@@ -10,12 +10,12 @@ import { SpinnerComponent } from "../../spinner/spinner.component";
 export class HeaderComponent {
   @Input()
   loading = false;
+  @Input()
+  preview = false;
   @Output()
   postClickEvent = new EventEmitter();
   @Output()
   previewClickEvent = new EventEmitter();
-
-  preview = model(false);
 
   onBackClick() {
     history.back();

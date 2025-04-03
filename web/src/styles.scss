@@ -20,6 +20,10 @@ body {
   color: var(--foreground);
 }
 
+button {
+  font-family: inherit;
+}
+
 button:not(:disabled) {
   cursor: pointer;
 }

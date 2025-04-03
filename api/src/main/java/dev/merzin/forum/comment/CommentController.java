@@ -44,7 +44,21 @@ public class CommentController {
 		@RequestParam(required = false) ZonedDateTime after
 	) {
 		var authentication = SecurityContextHolder.getContext().getAuthentication();
-		var commentResponses = commentService.getPostComments(postId, after).stream().map(CommentResponse::new).toList();
+		var commentResponses = commentService.getPostComments(postId, after).stream()
+			.map(CommentResponse::new).toList();
+		if (authentication.isAuthenticated())
+			favoriteService.populateCommentFavorited(commentResponses, authentication.getName());
+		return commentResponses;
+	}
+
+	@GetMapping("/list/user/{username}")
+	public List<CommentResponse> getUserComments(
+		@PathVariable String username,
+		@RequestParam(required = false) ZonedDateTime before
+	) {
+		var authentication = SecurityContextHolder.getContext().getAuthentication();
+		var commentResponses = commentService.getUserComments(username, before).stream()
+			.map(CommentResponse::new).toList();
 		if (authentication.isAuthenticated())
 			favoriteService.populateCommentFavorited(commentResponses, authentication.getName());
 		return commentResponses;

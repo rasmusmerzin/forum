@@ -1,5 +1,11 @@
 <app-me-header />
 
-<app-me-posts />
+<app-tabs [tabs]="tabs" [(selected)]="selectedTab" />
+
+@if (selectedTab === "posts") {
+  <app-me-posts />
+} @else if (selectedTab === "comments") {
+  <app-me-comments />
+}
 
 <app-navigation />

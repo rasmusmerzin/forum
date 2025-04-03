@@ -9,10 +9,10 @@
   <div class="actions">
     <button
       class="button-basic-sm preview"
-      [class.active]="preview()"
+      [class.active]="preview"
       (click)="previewClickEvent.emit()"
     >
-      @if (preview()) {
+      @if (preview) {
         Edit
       } @else {
         Preview

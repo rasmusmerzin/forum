@@ -1,4 +1,10 @@
-import { Component, HostBinding, inject, Input } from "@angular/core";
+import {
+  Component,
+  HostBinding,
+  HostListener,
+  inject,
+  Input,
+} from "@angular/core";
 import { Comment } from "../comment";
 import { CommentService } from "../comment.service";
 import { AuthenticationService } from "../../authentication/authentication.service";
@@ -28,6 +34,13 @@ export class CommentCardComponent {
   pointerEvents = "";
   @Input()
   comment: Partial<Comment> = {};
+  @HostBinding("style.cursor")
+  get cursor() {
+    const pointer =
+      this.comment.postId &&
+      location.pathname !== `/post/${this.comment.postId}`;
+    return pointer ? "pointer" : "auto";
+  }
   @HostBinding("class.favorited")
   get favorited() {
     return this.comment.favorited;
@@ -62,7 +75,14 @@ export class CommentCardComponent {
       : "";
   }
 
-  async deleteComment(): Promise<void> {
+  @HostListener("click")
+  onHostClick() {
+    if (this.comment.postId)
+      this.router.navigate(["/post", this.comment.postId]);
+  }
+
+  async onDeleteClick(event: MouseEvent): Promise<void> {
+    event.stopPropagation();
     if (!this.comment.id || this.userUsername !== this.username) return;
     if (!confirm("Are you sure you want to delete this comment?")) return;
     await this.commentService.deleteComment(this.comment.id);

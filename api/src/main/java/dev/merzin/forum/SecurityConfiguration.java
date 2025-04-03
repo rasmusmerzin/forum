@@ -44,6 +44,7 @@ public class SecurityConfiguration {
 				request.requestMatchers("/post/list/user/*").permitAll();
 				request.requestMatchers("/post/*").permitAll();
 				request.requestMatchers("/comment/list/post/*").permitAll();
+				request.requestMatchers("/comment/list/user/*").permitAll();
 				request.requestMatchers("/email/verify/*").permitAll();
 				request.anyRequest().authenticated();
 			})

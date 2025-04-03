@@ -44,4 +44,9 @@ public class CommentService {
 		if (after == null) return commentRepository.findTop10ByPostId(postId);
 		return commentRepository.findTop10ByPostIdAndCreatedAfter(postId, after);
 	}
+
+	public List<Comment> getUserComments(String username, ZonedDateTime before) {
+		if (before == null) before = ZonedDateTime.now();
+		return commentRepository.findTop10ByAuthorUsernameAndCreatedBefore(username, before);
+	}
 }

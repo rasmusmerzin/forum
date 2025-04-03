@@ -43,4 +43,17 @@ export class CommentService {
     if (!response.ok) throw new Error(await response.text());
     return response.json();
   }
+
+  async fetchUserComments(
+    username: string,
+    before?: string,
+  ): Promise<Comment[]> {
+    let url = new URL(`list/user/${username}`, this.url).href;
+    if (before) url += `?before=${before}`;
+    const response = await fetch(url, {
+      headers: this.authenticationService.headers(),
+    });
+    if (!response.ok) throw new Error(await response.text());
+    return response.json();
+  }
 }

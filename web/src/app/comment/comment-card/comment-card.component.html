@@ -11,7 +11,7 @@
   </a>
   <span class="created" title="{{ created }}">{{ createdAgo }}</span>
   @if (opUsername) {
-    <a class="replying" [routerLink]="'/post/' + postId">
+    <a class="replying" [routerLink]="'/user/' + opUsername">
       <svg height="10px" viewBox="0 0 23.25 27.764">
         <path
           d="m23.25 9.001-9.287 8.933v-5.412c-2.813 0-9.973.062-9.973 7.426a7.98 7.98 0 0 0 6.369 7.816C4.517 26.972 0 22.017 0 15.958 0 4.702 12.026 4.606 13.963 4.606V0Z"
@@ -44,7 +44,7 @@
   </button>
 </div>
 @if (comment.id && userUsername === username) {
-  <button class="button-icon delete" (click)="deleteComment()">
+  <button class="button-icon delete" (click)="onDeleteClick($event)">
     <svg width="18px" height="18px" viewBox="0 -960 960 960">
       <path
         d="m376-300 104-104 104 104 56-56-104-104 104-104-56-56-104 104-104-104-56 56 104 104-104 104 56 56Zm-96 180q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520Zm-400 0v520-520Z"

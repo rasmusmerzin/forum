@@ -28,4 +28,13 @@ public interface CommentRepository extends JpaRepository<Comment, UUID> {
 		ORDER BY c.created ASC
 		LIMIT 10""")
 	List<Comment> findTop10ByPostIdAndCreatedAfter(UUID postId, ZonedDateTime after);
+
+	@Query("""
+		SELECT c
+		FROM Comment c
+		WHERE c.author.username = :username
+		AND c.created < :before
+		ORDER BY c.created DESC
+		LIMIT 10""")
+	List<Comment> findTop10ByAuthorUsernameAndCreatedBefore(String username, ZonedDateTime before);
 }

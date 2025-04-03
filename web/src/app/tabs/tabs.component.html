@@ -1,0 +1,5 @@
+@for (tab of tabs; track tab) {
+  <button (click)="select(tab)" [class.active]="selected() === tab">
+    {{ tab.replaceAll("_", " ") }}
+  </button>
+}

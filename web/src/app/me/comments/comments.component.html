@@ -1,0 +1,18 @@
+@if (comments) {
+  @for (comment of comments; track comment.id) {
+    <app-comment-card [comment]="comment" />
+  } @empty {
+    <p>No comments yet.</p>
+  }
+}
+@if (loading) {
+  <div class="loading">
+    <app-spinner />
+  </div>
+} @else if (before) {
+  <div class="more">
+    <button class="button-basic-sm" (click)="loadMoreComments()">
+      Load more
+    </button>
+  </div>
+}
