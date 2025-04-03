@@ -10,6 +10,9 @@ import { Router, RouterLink } from "@angular/router";
 import { FavoriteService } from "../../favorite/favorite.service";
 import { AuthenticationService } from "../../authentication/authentication.service";
 import { formatDateAgo } from "../../date";
+import { PostService } from "../post.service";
+import { HintService } from "../../hint/hint.service";
+import { BlankService } from "../../blank/blank.service";
 
 @Component({
   selector: "app-post-card",
@@ -20,8 +23,12 @@ import { formatDateAgo } from "../../date";
 export class PostCardComponent {
   favoriteService = inject(FavoriteService);
   authenticationService = inject(AuthenticationService);
+  postService = inject(PostService);
+  hintService = inject(HintService);
+  blankService = inject(BlankService);
   router = inject(Router);
 
+  userUsername = this.authenticationService.getUsername();
   @Input()
   post: Partial<Post> = {};
   @Input()
@@ -65,6 +72,15 @@ export class PostCardComponent {
   @HostListener("click")
   onHostClick() {
     if (this.post.id) this.router.navigate(["/post", this.post.id]);
+  }
+
+  async onDeleteClick(event: MouseEvent) {
+    event.stopPropagation();
+    if (!this.post?.id || this.post.username !== this.username) return;
+    if (!confirm("Are you sure you want to delete this post?")) return;
+    await this.postService.deletePost(this.post.id);
+    await this.blankService.refresh();
+    this.hintService.showHint("Post deleted", 3000);
   }
 
   onFavoriteClick(event: MouseEvent) {
