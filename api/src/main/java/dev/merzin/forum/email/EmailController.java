@@ -1,7 +1,6 @@
 package dev.merzin.forum.email;
 
 import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,17 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/email")
 public class EmailController {
-	@Autowired
-	private EmailService emailService;
+  @Autowired private EmailService emailService;
 
-	@GetMapping("/verify")
-	public void sendVerificationEmail() throws Exception {
-		var authentication = SecurityContextHolder.getContext().getAuthentication();
-		emailService.sendVerificationEmail(authentication.getName());
-	}
+  @GetMapping("/verify")
+  public void sendVerificationEmail() throws Exception {
+    var authentication = SecurityContextHolder.getContext().getAuthentication();
+    emailService.sendVerificationEmail(authentication.getName());
+  }
 
-	@PostMapping("/verify/{id}")
-	public void verifyEmail(@PathVariable UUID id) throws Exception {
-		emailService.verifyEmail(id);
-	}
+  @PostMapping("/verify/{id}")
+  public void verifyEmail(@PathVariable UUID id) throws Exception {
+    emailService.verifyEmail(id);
+  }
 }

@@ -13,27 +13,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/account")
 public class AccountController {
-	@Autowired
-	private AccountService accountService;
+  @Autowired private AccountService accountService;
 
-	@PatchMapping
-	public void updateAccount(@RequestBody AccountUpdate update) {
-		var authentication = SecurityContextHolder.getContext().getAuthentication();
-		accountService.update(update, authentication.getName());
-	}
+  @PatchMapping
+  public void updateAccount(@RequestBody AccountUpdate update) {
+    var authentication = SecurityContextHolder.getContext().getAuthentication();
+    accountService.update(update, authentication.getName());
+  }
 
-	@PostMapping("/register")
-	public void register(@RequestBody AccountRegistration registration) {
-		accountService.register(registration);
-	}
+  @PostMapping("/register")
+  public void register(@RequestBody AccountRegistration registration) {
+    accountService.register(registration);
+  }
 
-	@PostMapping("/login")
-	public String login(@RequestBody AccountAuthentication authentication) {
-		return accountService.verifyCredentials(authentication);
-	}
+  @PostMapping("/login")
+  public String login(@RequestBody AccountAuthentication authentication) {
+    return accountService.verifyCredentials(authentication);
+  }
 
-	@GetMapping("/{username}")
-	public AccountResponse getAccount(@PathVariable String username) {
-		return new AccountResponse(accountService.getAccountByUsername(username));
-	}
+  @GetMapping("/{username}")
+  public AccountResponse getAccount(@PathVariable String username) {
+    return new AccountResponse(accountService.getAccountByUsername(username));
+  }
 }
